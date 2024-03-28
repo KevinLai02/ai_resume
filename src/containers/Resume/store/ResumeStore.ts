@@ -6,7 +6,9 @@ const initialState = {
     name: '',
     talent: '',
     profession: '',
-    category: ''
+    category: '',
+    mail: '',
+    phone: ''
 };
 
 const ResumeStore = () => {
@@ -14,13 +16,15 @@ const ResumeStore = () => {
         /*observables*/
         ...initialState,
     async generateResume(data:IFormData) {
-        const {name, talent, profession, category} = data
+        const {name, talent, profession, category, mail, phone} = data
         const res = await callOpenAIApi(data)
-        const {message:{content}} = res
+        const {message:{content}} = res!
         this.name = name
         this.talent = talent
         this.profession = profession
         this.category = category
+        this.mail = mail
+        this.phone = phone
         if(content) this.introduction = content
         return res
     },

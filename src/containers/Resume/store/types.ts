@@ -3,4 +3,6 @@ export interface IFormData {
     talent: string
     profession: string
     category: string
+    mail: string
+    phone: string
   }

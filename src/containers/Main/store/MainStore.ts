@@ -1,5 +1,4 @@
 import { useLocalObservable } from 'mobx-react-lite';
-
 const initialState = {
     userPic: '',
 };
