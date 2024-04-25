@@ -6,7 +6,6 @@ import { IFormData } from "../Resume/store/types";
 import { useRouter } from "next/router";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json"
-
 function Main() {
   const router = useRouter()
   const {ResumeStore:{generateResume}} = useStore()

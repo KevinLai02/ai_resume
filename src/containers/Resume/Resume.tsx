@@ -7,7 +7,7 @@ import AreaTitle from "./components/AreaTitle";
 function Resume() {
   const router = useRouter()
   const {
-    ResumeStore:{introduction, name, talent, profession, mail, phone}
+    ResumeStore:{introduction, name, talent, profession, mail, phone, address}
   } = useStore()
 
   return (
@@ -45,10 +45,14 @@ function Resume() {
                       <p className="flex-1 text-2xl ml-7">{phone}</p>
                     </div>
                     <div className="flex flex-row items-center mt-5">
-                      <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
-                        <p className="text-[8px] text-white font-bold">ADDRESS</p> 
-                      </div>
-                      <p className="flex-1 text-2xl ml-7">address</p>
+                      {address && (
+                        <>
+                          <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
+                          <p className="text-[8px] text-white font-bold">ADDRESS</p> 
+                          </div>
+                            <p className="flex-1 text-2xl ml-7">address</p>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

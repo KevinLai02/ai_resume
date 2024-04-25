@@ -1,5 +1,5 @@
 import { useLocalObservable } from 'mobx-react-lite';
-import { callOpenAIApi } from "@/api/api";
+import { callResume } from "@/api/api";
 import { IFormData } from './types';
 const initialState = {
     introduction: '',
@@ -8,7 +8,8 @@ const initialState = {
     profession: '',
     category: '',
     mail: '',
-    phone: ''
+    phone: '',
+    address: ''
 };
 
 const ResumeStore = () => {
@@ -16,17 +17,20 @@ const ResumeStore = () => {
         /*observables*/
         ...initialState,
     async generateResume(data:IFormData) {
-        const {name, talent, profession, category, mail, phone} = data
-        const res = await callOpenAIApi(data)
-        const {message:{content}} = res!
-        this.name = name
-        this.talent = talent
-        this.profession = profession
-        this.category = category
-        this.mail = mail
-        this.phone = phone
-        if(content) this.introduction = content
-        return res
+        try {
+            const {name, talent, profession, category, mail, phone} = data
+            const res = await callResume(data)
+            this.name = name
+            this.talent = talent
+            this.profession = profession
+            this.category = category
+            this.mail = mail
+            this.phone = phone
+            if(res) this.introduction = res
+            return res
+        } catch (error) {
+            console.log(error);
+        }
     },
     }));
 
