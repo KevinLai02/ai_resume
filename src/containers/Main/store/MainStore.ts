@@ -1,18 +1,18 @@
-import { useLocalObservable } from 'mobx-react-lite';
+import { useLocalObservable } from "mobx-react-lite";
 const initialState = {
-    userPic: '',
+  userPic: "",
 };
 
 const MainStore = () => {
-    const store = useLocalObservable(() => ({
-        /*observables*/
-        ...initialState,
+  const store = useLocalObservable(() => ({
+    /*observables*/
+    ...initialState,
     async getUserId() {
-        this.userPic = ''
+      this.userPic = "";
     },
-    }));
+  }));
 
-    return store;
+  return store;
 };
 
 export default MainStore;
