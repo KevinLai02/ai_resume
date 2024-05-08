@@ -12,11 +12,7 @@ function Main() {
     ResumeStore: { generateResume },
   } = useStore();
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
     defaultValues: {
       name: "",

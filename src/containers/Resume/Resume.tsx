@@ -1,11 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { useRouter } from "next/router";
 import { useStore } from "../../store";
 import Header from "@/components/Header";
 import AreaTitle from "./components/AreaTitle";
 function Resume() {
-  const router = useRouter();
   const {
     ResumeStore: {
       introduction,

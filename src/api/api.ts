@@ -1,6 +1,6 @@
-import OpenAI from "openai";
+// import OpenAI from "openai";
 import { IFormData } from "@/containers/Resume/store/types";
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+// import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
