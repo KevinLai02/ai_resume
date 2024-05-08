@@ -97,7 +97,7 @@ function Resume() {
                 <AreaTitle title="experience" iconColor="main-gray" />
               </div>
               <div className="flex">
-                <div className="font-bold">專長:test </div>
+                <div className="font-bold">專長:testt </div>
                 <div className="ml-2">{talent}</div>
               </div>
             </div>
