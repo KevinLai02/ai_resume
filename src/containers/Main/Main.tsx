@@ -35,9 +35,19 @@ function Main() {
 
   return (
     <div className="flex flex-col flex-1 text-xl">
-      <div className="flex py-3 px-10">
-        歡迎使用<p className="text-sky-400 font-bold">AI智造坊</p>
+      <div className="flex justify-between py-5 px-10 mb-40 bg-slate-200">
+        <div className="flex">
+          歡迎使用<p className="text-sky-400 font-bold">AI智造坊</p>
+        </div>
+        <button
+          onClick={() => {
+            router.push("/interviewer");
+          }}
+        >
+          面試官AI
+        </button>
       </div>
+
       <div className="flex flex-col items-center ">
         <div className="flex flex-col border-2 border-orange-200 items-center p-5 rounded-md">
           <p>填寫以下表格</p>
