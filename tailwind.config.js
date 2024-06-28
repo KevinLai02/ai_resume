@@ -11,10 +11,10 @@ module.exports = {
         primary: { 100: "#F5E9D6" },
         "main-gray": "#809BA8",
         "main-earth": "#F5F0EA",
-        brown: {
-          100: "#8C705A",
-        },
         custom: {
+          brown: {
+            100: "#8C705A",
+          },
           blue: {
             100: "#38BDF8",
             200: "#66AAF9",

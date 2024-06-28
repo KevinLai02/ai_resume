@@ -6,13 +6,21 @@ import { IFormData } from "../store/types";
 import { useRouter } from "next/router";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
+import Header from "@/containers/Main/components/Header";
+// import Input from "../components/Input";
+import Button from "@/containers/Main/components/Button";
+
 function Form() {
   const router = useRouter();
   const {
     ResumeStore: { generateResume },
   } = useStore();
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
     defaultValues: {
       name: "",
@@ -23,6 +31,7 @@ function Form() {
       phone: "",
     },
   });
+  console.log(errors);
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
@@ -35,78 +44,81 @@ function Form() {
 
   return (
     <div className="flex flex-col flex-1 text-xl">
-      <div className="flex py-3 px-10">
-        歡迎使用<p className="text-sky-400 font-bold">AI海事職涯燈塔</p>
-      </div>
-      <div className="flex flex-col items-center ">
-        <div className="flex flex-col border-2 border-orange-200 items-center p-5 rounded-md">
-          <p>填寫以下表格</p>
-          <div className="flex flex-row">
-            <div>
-              <div className="m-5">
-                <p>名稱</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("name", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>產業類別</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("category", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>專業</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("talent", { required: true })}
-                />
-              </div>
+      <Header />
+      <div className="flex flex-col items-center p-10">
+        <div className="flex flex-col bg-custom-blue-200 items-center p-5 rounded-xl w-[30%] font-bold">
+          <p className="text-white text-2xl">填寫以下表格</p>
+          <div className="flex flex-col w-full px-10 pb-10 my-4 bg-white rounded-xl">
+            <div className="mt-4">
+              <p className="text-custom-blue-200">名稱</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("name", { required: "*此欄位必填" })}
+              />
+              <p className="h-5 text-base text-custom-red-100">
+                {errors.name && errors.name.message}
+              </p>
             </div>
-            <div>
-              <div className="m-5">
-                <p>曾經的職位</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("profession", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>Gmail</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("mail", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>連絡電話</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("phone", { required: true })}
-                />
-              </div>
+            <div className="mt-8">
+              <p className="text-custom-blue-200">專業</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("talent", { required: "*此欄位必填" })}
+              />
+              <p className="h-5 text-base text-custom-red-100">
+                {errors.talent && errors.talent.message}
+              </p>
+            </div>
+            <div className="mt-8">
+              <p className="text-custom-blue-200">曾經的職位</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("profession", { required: "*此欄位必填" })}
+              />
+              <p className="h-5 text-base text-custom-red-100">
+                {errors.profession && errors.profession.message}
+              </p>
+            </div>
+            <div className="mt-8">
+              <p className="text-custom-blue-200">Gmail</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("mail", { required: "*此欄位必填" })}
+              />
+              <p className="h-5 text-base text-custom-red-100">
+                {errors.mail && errors.mail.message}
+              </p>
+            </div>
+            <div className="mt-8">
+              <p className="text-custom-blue-200">連絡電話</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("phone", { required: "*此欄位必填" })}
+              />
+              <p className="h-5 text-base text-custom-red-100">
+                {errors?.phone?.message}
+              </p>
+            </div>
+            <div className="mt-8">
+              <p className="text-custom-blue-200">產業類別</p>
+              <input
+                className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                {...register("category")}
+              />
             </div>
           </div>
-          <button
-            className="flex justify-center w-20 p-3 border-2 rounded-lg border-sky-600 hover:bg-sky-600"
+          <Button
+            className="p-3 rounded-lg bg-white"
             onClick={handleSubmit(onSubmit)}
           >
             <div>
               {isLoading ? (
                 <Lottie className="h-5 w-5" animationData={LoadingAnimation} />
               ) : (
-                <div className="text-sm">生成</div>
+                <div className="text-lg font-bold">開始生成</div>
               )}
             </div>
-          </button>
+          </Button>
         </div>
       </div>
     </div>
