@@ -2,9 +2,9 @@
 import { IFormData } from "@/containers/Resume/store/types";
 // import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export async function callResume(props: IFormData) {
