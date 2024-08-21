@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@google/generative-ai": "^0.8.0",
+    "@mui/material": "^5.16.7",
     "@nextui-org/button": "^2.0.34",
     "@nextui-org/react": "^2.4.2",
     "@react-pdf/renderer": "^3.4.2",

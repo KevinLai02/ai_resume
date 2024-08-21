@@ -8,7 +8,17 @@ import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
 import Header from "@/containers/Main/components/Header";
 // import Input from "../components/Input";
+import Dropdown from "@/components/DropdownList";
 import Button from "@/containers/Main/components/Button";
+import { SelectChangeEvent } from "@mui/material/Select";
+import { Model } from "../types";
+
+const array = [
+  { id: 1, name: Model.ALPACA },
+  { id: 2, name: Model.LLAMA },
+  { id: 3, name: Model.GEMINI },
+  { id: 4, name: Model.GPT4O },
+];
 
 function Form() {
   const router = useRouter();
@@ -16,6 +26,7 @@ function Form() {
     ResumeStore: { generateResume },
   } = useStore();
   const [isLoading, setIsLoading] = useState(false);
+  const [value, setValue] = useState("");
   const {
     register,
     handleSubmit,
@@ -31,7 +42,10 @@ function Form() {
       phone: "",
     },
   });
-  console.log(errors);
+
+  const dropdownChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+  };
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
@@ -46,6 +60,14 @@ function Form() {
     <div className="flex flex-col flex-1 text-xl">
       <Header />
       <div className="flex flex-col items-center p-10">
+        <div className="mb-2">
+          <Dropdown
+            value={value}
+            placeholder="模型選擇"
+            list={array}
+            handleChange={dropdownChange}
+          />
+        </div>
         <div className="flex flex-col bg-custom-blue-200 items-center p-5 rounded-xl w-[30%] font-bold">
           <p className="text-white text-2xl">填寫以下表格</p>
           <div className="flex flex-col w-full px-10 pb-10 my-4 bg-white rounded-xl">
