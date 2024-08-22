@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useStore } from "@/store";
-import { IFormData } from "../store/types";
+import { IFormData } from "../Resume/store/types";
 import { useRouter } from "next/router";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
 import Header from "@/containers/Main/components/Header";
-// import Input from "../components/Input";
 import Dropdown from "@/components/DropdownList";
 import Button from "@/containers/Main/components/Button";
 import { SelectChangeEvent } from "@mui/material/Select";
-import ModelInformation from "../components/ModelInformation";
-import { Model } from "../types";
+import ModelInformation from "./components/ModelInformation";
+import { Model } from "./types";
 
 const array = [
   { id: 1, name: Model.ALPACA },

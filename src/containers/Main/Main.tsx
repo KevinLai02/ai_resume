@@ -21,7 +21,7 @@ function Main() {
           <Button
             className="flex-col bg-custom-blue-200 font-bold text-white py-10"
             onClick={() => {
-              router.push("/resume/form");
+              router.push("/template");
             }}
           >
             <div className="text-2xl">快速AI履歷生成</div>
