@@ -11,7 +11,7 @@ interface IProps {
 export default function ModelInformation({ modelName }: IProps) {
   return (
     <div className="flex-1">
-      <div className="bg-gray-200 m-20 p-10 rounded-lg">
+      <div className="bg-gray-200 m-10 p-10 rounded-lg">
         <div className="flex justify-center border-b-2 border-black pb-3">
           <p className="text-3xl">{modelName}</p>
         </div>

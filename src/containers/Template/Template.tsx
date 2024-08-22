@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Header from "@/containers/Main/components/Header";

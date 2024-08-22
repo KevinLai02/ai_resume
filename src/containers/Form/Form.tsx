@@ -59,7 +59,17 @@ function Form() {
   return (
     <div className="flex flex-col flex-1 text-xl">
       <Header />
-      <div className="flex flex-col p-10">
+      <div>
+        <Button
+          className="min-w-32 mt-5 ml-10 font-bold bg-blue-200 border-none"
+          onClick={() => {
+            router.push("/template");
+          }}
+        >
+          {"<"} 上一步
+        </Button>
+      </div>
+      <div className="flex flex-col px-10 pb-10">
         <div className="mb-2 flex justify-center">
           <Dropdown
             value={model}
@@ -76,7 +86,7 @@ function Form() {
             <p className="text-white text-2xl">填寫以下表格</p>
             <div className="flex flex-col w-full px-10 pb-10 my-4 bg-white rounded-xl">
               <div className="mt-4">
-                <p className="text-custom-blue-200">名稱</p>
+                <p className="text-custom-blue-200 text-base">名稱</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("name", { required: "*此欄位必填" })}
@@ -85,8 +95,8 @@ function Form() {
                   {errors.name && errors.name.message}
                 </p>
               </div>
-              <div className="mt-8">
-                <p className="text-custom-blue-200">專業</p>
+              <div className="mt-2">
+                <p className="text-custom-blue-200 text-base">專業</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("talent", { required: "*此欄位必填" })}
@@ -95,8 +105,8 @@ function Form() {
                   {errors.talent && errors.talent.message}
                 </p>
               </div>
-              <div className="mt-8">
-                <p className="text-custom-blue-200">曾經的職位</p>
+              <div className="mt-2">
+                <p className="text-custom-blue-200 text-base">曾經的職位</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("profession", { required: "*此欄位必填" })}
@@ -105,8 +115,8 @@ function Form() {
                   {errors.profession && errors.profession.message}
                 </p>
               </div>
-              <div className="mt-8">
-                <p className="text-custom-blue-200">Gmail</p>
+              <div className="mt-2">
+                <p className="text-custom-blue-200 text-base">Gmail</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("mail", { required: "*此欄位必填" })}
@@ -115,8 +125,8 @@ function Form() {
                   {errors.mail && errors.mail.message}
                 </p>
               </div>
-              <div className="mt-8">
-                <p className="text-custom-blue-200">連絡電話</p>
+              <div className="mt-2">
+                <p className="text-custom-blue-200 text-base">連絡電話</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("phone", { required: "*此欄位必填" })}
@@ -125,8 +135,8 @@ function Form() {
                   {errors?.phone?.message}
                 </p>
               </div>
-              <div className="mt-8">
-                <p className="text-custom-blue-200">產業類別</p>
+              <div className="mt-2">
+                <p className="text-custom-blue-200 text-base">產業類別</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("category")}
@@ -140,7 +150,7 @@ function Form() {
               <div>
                 {isLoading ? (
                   <Lottie
-                    className="h-5 w-5"
+                    className="h-7 w-7"
                     animationData={LoadingAnimation}
                   />
                 ) : (
