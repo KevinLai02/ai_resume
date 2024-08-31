@@ -17,7 +17,7 @@ export async function callResume(props: IFormData) {
 
 // export async function callRefactorWorkExperience(props: IFormData) {
 //   const { talent, profession, category } = props;
-//   const prompt = `用繁體中文生成一段大約150字有關 [${talent},${profession},${category}] 的繁體中文履歷自我介紹句子`;
+//   const prompt = ``;
 
 //   const result = await model.generateContent(prompt);
 //   const text = result.response.text();
