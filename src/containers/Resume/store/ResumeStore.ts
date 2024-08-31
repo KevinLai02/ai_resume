@@ -1,5 +1,5 @@
 import { useLocalObservable } from "mobx-react-lite";
-import { callResume } from "@/api/api";
+import { callResume } from "@/api/gemini";
 import { IFormData } from "./types";
 const initialState = {
   introduction: "",
