@@ -1,6 +1,7 @@
 import { useLocalObservable } from "mobx-react-lite";
+import { Templates } from "../types";
 const initialState = {
-  template: "",
+  template: Templates.ONE,
 };
 
 const TemplateStore = () => {

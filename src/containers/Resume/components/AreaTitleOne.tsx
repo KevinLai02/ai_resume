@@ -5,7 +5,7 @@ interface PropsT {
   iconColor: string;
 }
 
-export default function AreaTitle(props: PropsT) {
+export default function AreaTitleOne(props: PropsT) {
   const { title, iconColor } = props;
   return (
     <div className="flex flex-row items-center">

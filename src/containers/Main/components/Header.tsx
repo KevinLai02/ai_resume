@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className="flex flex-row w-full bg-primary-100 px-16 py-1 items-center justify-between">
       <Link href={"/"}>
-        <p className="text-custom-blue-100 font-bold text-2xl">
+        <p className="text-custom-blue-200 font-bold text-2xl">
           AI海事職涯燈塔
         </p>
       </Link>

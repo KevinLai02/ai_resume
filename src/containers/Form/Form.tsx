@@ -82,11 +82,11 @@ function Form() {
           <div className="flex-1">
             {model !== "" && <ModelInformation modelName={model} />}
           </div>
-          <div className="flex flex-col flex-1 bg-custom-blue-200 items-center p-5 rounded-xl w-[30%] font-bold">
+          <div className="flex flex-col flex-1 bg-custom-blue-300 items-center p-5 rounded-xl w-[30%] font-bold">
             <p className="text-white text-2xl">填寫以下表格</p>
             <div className="flex flex-col w-full px-10 pb-10 my-4 bg-white rounded-xl">
               <div className="mt-4">
-                <p className="text-custom-blue-200 text-base">名稱</p>
+                <p className="text-custom-blue-300 text-base">名稱</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("name", { required: "*此欄位必填" })}
@@ -96,7 +96,7 @@ function Form() {
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-200 text-base">專業</p>
+                <p className="text-custom-blue-300 text-base">專業</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("talent", { required: "*此欄位必填" })}
@@ -106,7 +106,7 @@ function Form() {
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-200 text-base">曾經的職位</p>
+                <p className="text-custom-blue-300 text-base">曾經的職位</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("profession", { required: "*此欄位必填" })}
@@ -116,7 +116,7 @@ function Form() {
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-200 text-base">Gmail</p>
+                <p className="text-custom-blue-300 text-base">Gmail</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("mail", { required: "*此欄位必填" })}
@@ -126,7 +126,7 @@ function Form() {
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-200 text-base">連絡電話</p>
+                <p className="text-custom-blue-300 text-base">連絡電話</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("phone", { required: "*此欄位必填" })}
@@ -136,7 +136,7 @@ function Form() {
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-200 text-base">產業類別</p>
+                <p className="text-custom-blue-300 text-base">產業類別</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("category")}

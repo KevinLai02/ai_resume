@@ -19,7 +19,7 @@ function Main() {
         </div>
         <div className="flex flex-1 flex-col w-[30%] py-20 px-32">
           <Button
-            className="flex-col bg-custom-blue-200 font-bold text-white py-10"
+            className="flex-col bg-custom-blue-300 font-bold text-white py-10"
             onClick={() => {
               router.push("/template");
             }}
