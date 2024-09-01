@@ -3,6 +3,9 @@ import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Header from "@/containers/Main/components/Header";
 import Link from "next/link";
+import { runInAction } from "mobx";
+import rootStore from "@/store";
+import { Templates } from "./types";
 
 function Template() {
   return (
@@ -12,13 +15,37 @@ function Template() {
         <p>請選擇一種履歷模板</p>
       </div>
       <div className="flex p-10 justify-center">
-        <Link href="/form" className="flex flex-1 justify-center">
+        <Link
+          href="/form"
+          className="flex flex-1 justify-center"
+          onClick={() => {
+            runInAction(() => {
+              rootStore.TemplateStore.template = Templates.ONE;
+            });
+          }}
+        >
           <Image src="/images/template1.png" alt="" height={300} width={300} />
         </Link>
-        <Link href="/form" className="flex flex-1 justify-center">
+        <Link
+          href="/form"
+          className="flex flex-1 justify-center"
+          onClick={() => {
+            runInAction(() => {
+              rootStore.TemplateStore.template = Templates.TWO;
+            });
+          }}
+        >
           <Image src="/images/template1.png" alt="" height={300} width={300} />
         </Link>
-        <Link href="/form" className="flex flex-1 justify-center">
+        <Link
+          href="/form"
+          className="flex flex-1 justify-center"
+          onClick={() => {
+            runInAction(() => {
+              rootStore.TemplateStore.template = Templates.THREE;
+            });
+          }}
+        >
           <Image src="/images/template1.png" alt="" height={300} width={300} />
         </Link>
       </div>

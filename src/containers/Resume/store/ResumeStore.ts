@@ -1,40 +1,39 @@
-import { useLocalObservable } from "mobx-react-lite";
+import { makeAutoObservable } from "mobx";
 import { callResume } from "@/api/gemini";
 import { IFormData } from "./types";
-const initialState = {
-  introduction: "",
-  name: "",
-  talent: "",
-  profession: "",
-  category: "",
-  mail: "",
-  phone: "",
-  address: "",
-};
 
-const ResumeStore = () => {
-  const store = useLocalObservable(() => ({
-    /*observables*/
-    ...initialState,
-    async generateResume(data: IFormData) {
-      try {
-        const { name, talent, profession, category, mail, phone } = data;
-        const res = await callResume(data);
-        this.name = name;
-        this.talent = talent;
-        this.profession = profession;
-        this.category = category;
-        this.mail = mail;
-        this.phone = phone;
-        if (res) this.introduction = res;
-        return res;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  }));
+class ResumeStore {
+  introduction: String = "";
+  name: String = "";
+  talent: String = "";
+  profession: String = "";
+  category: String = "";
+  mail: String = "";
+  phone: String = "";
+  address: String = "";
+  birthday: String = "";
+  workExperience: String = "";
+  education: String = "";
 
-  return store;
-};
+  constructor() {
+    makeAutoObservable(this);
+  }
 
+  async generateResume(data: IFormData) {
+    try {
+      const { name, talent, profession, category, mail, phone } = data;
+      const res = await callResume(data);
+      this.name = name;
+      this.talent = talent;
+      this.profession = profession;
+      this.category = category;
+      this.mail = mail;
+      this.phone = phone;
+      if (res) this.introduction = res;
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 export default ResumeStore;

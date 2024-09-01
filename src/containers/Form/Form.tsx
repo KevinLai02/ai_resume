@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
-import { useStore } from "@/store";
+import rootStore from "@/store";
 import { IFormData } from "../Resume/store/types";
 import { useRouter } from "next/router";
 import Lottie from "lottie-react";
@@ -24,7 +24,7 @@ function Form() {
   const router = useRouter();
   const {
     ResumeStore: { generateResume },
-  } = useStore();
+  } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState("");
   const {

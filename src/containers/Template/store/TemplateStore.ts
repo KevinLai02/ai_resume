@@ -1,16 +1,11 @@
-import { useLocalObservable } from "mobx-react-lite";
+import { makeAutoObservable } from "mobx";
 import { Templates } from "../types";
-const initialState = {
-  template: Templates.ONE,
-};
 
-const TemplateStore = () => {
-  const store = useLocalObservable(() => ({
-    /*observables*/
-    ...initialState,
-  }));
+class TemplateStore {
+  template: Templates = Templates.ONE;
 
-  return store;
-};
-
+  constructor() {
+    makeAutoObservable(this);
+  }
+}
 export default TemplateStore;

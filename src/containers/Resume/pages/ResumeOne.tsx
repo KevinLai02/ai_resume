@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "@/store";
+import rootStore from "@/store";
 import AreaTitleOne from "../components/AreaTitleOne";
 function ResumeOne() {
   const {
@@ -13,7 +13,7 @@ function ResumeOne() {
       phone,
       address,
     },
-  } = useStore();
+  } = rootStore;
 
   return (
     <div className="flex flex-row w-[1200px] h-[1600px] border rounded-lg my-10">

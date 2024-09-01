@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "@/store";
+import rootStore from "@/store";
 import AreaTitleTwo from "../components/AreaTitleTwo";
 function ResumeTwo() {
   const {
@@ -13,7 +13,7 @@ function ResumeTwo() {
       phone,
       address,
     },
-  } = useStore();
+  } = rootStore;
 
   return (
     <div className="w-[1200px] h-[1600px] my-10 bg-custom-blue-100">
