@@ -5,4 +5,8 @@ export interface IFormData {
   category: string;
   mail: string;
   phone: string;
+  workExperience: string;
+  education: string;
+  birthday: string;
+  address?: string;
 }

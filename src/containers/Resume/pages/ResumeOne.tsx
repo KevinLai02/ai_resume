@@ -7,11 +7,14 @@ function ResumeOne() {
     ResumeStore: {
       introduction,
       name,
-      talent,
+      // talent,
       profession,
       mail,
       phone,
       address,
+      education,
+      workExperience,
+      birthday,
     },
   } = rootStore;
 
@@ -34,20 +37,28 @@ function ResumeOne() {
                 <div className="ml-3">
                   <AreaTitleOne title="contact" iconColor="main-gray" />
                 </div>
-                <div className="mt-12">
+                <div className="mt-4">
                   <div className="flex flex-row items-center">
                     <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
                       <p className="text-[8px] text-white font-bold">GMAIL</p>
                     </div>
-                    <p className="flex-1 text-2xl ml-7">{mail}</p>
+                    <p className="flex-1 text-xl ml-7">{mail}</p>
                   </div>
-                  <div className="flex flex-row items-center mt-5">
+                  <div className="flex flex-row items-center mt-4">
                     <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
                       <p className="text-[8px] text-white font-bold">PHONE</p>
                     </div>
-                    <p className="flex-1 text-2xl ml-7">{phone}</p>
+                    <p className="flex-1 text-xl ml-7">{phone}</p>
                   </div>
-                  <div className="flex flex-row items-center mt-5">
+                  <div className="flex flex-row items-center mt-4">
+                    <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
+                      <p className="text-[8px] text-white font-bold">
+                        BIRTHDAY
+                      </p>
+                    </div>
+                    <p className="flex-1 text-xl ml-7">{birthday}</p>
+                  </div>
+                  <div className="flex flex-row items-center mt-4">
                     {address && (
                       <>
                         <div className="flex h-12 w-12 bg-main-gray items-center justify-center">
@@ -55,7 +66,7 @@ function ResumeOne() {
                             ADDRESS
                           </p>
                         </div>
-                        <p className="flex-1 text-2xl ml-7">address</p>
+                        <p className="flex-1 text-xl ml-7">{address}</p>
                       </>
                     )}
                   </div>
@@ -65,6 +76,7 @@ function ResumeOne() {
           </div>
           <div className="flex-1 mt-10 ml-11 bg-main-earth py-5 px-8">
             <AreaTitleOne title="education" iconColor="main-gray" />
+            <p className="text-xl px-5 pt-10">{education}</p>
           </div>
         </div>
         <div className="flex">
@@ -91,10 +103,7 @@ function ResumeOne() {
             <div className="bg-main-earth p-5">
               <AreaTitleOne title="experience" iconColor="main-gray" />
             </div>
-            <div className="flex">
-              <div className="font-bold">專業技能: </div>
-              <div className="ml-2">{talent}</div>
-            </div>
+            <div className="ml-2">{workExperience}</div>
           </div>
         </div>
         <div className="bg-main-gray w-full h-10 rounded-br-lg" />

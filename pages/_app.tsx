@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import RootStore from "@/store";
 // import { SessionProvider } from 'next-auth/react';
 import "@/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
@@ -10,11 +9,11 @@ const MyApp = (props: any) => {
 
   return (
     <NextUIProvider>
-      <RootStore>
-        {/* <SessionProvider session={session} basePath="/api/auth"> */}
-        <Component {...pageProps} />
-        {/* </SessionProvider> */}
-      </RootStore>
+      {/* <RootStore> */}
+      {/* <SessionProvider session={session} basePath="/api/auth"> */}
+      <Component {...pageProps} />
+      {/* </SessionProvider> */}
+      {/* </RootStore> */}
     </NextUIProvider>
   );
 };

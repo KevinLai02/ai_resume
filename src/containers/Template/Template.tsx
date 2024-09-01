@@ -35,7 +35,7 @@ function Template() {
             });
           }}
         >
-          <Image src="/images/template1.png" alt="" height={300} width={300} />
+          <Image src="/images/template2.png" alt="" height={300} width={300} />
         </Link>
         <Link
           href="/form"

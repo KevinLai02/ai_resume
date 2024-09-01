@@ -12,6 +12,9 @@ function ResumeTwo() {
       mail,
       phone,
       address,
+      education,
+      workExperience,
+      birthday,
     },
   } = rootStore;
 
@@ -23,7 +26,7 @@ function ResumeTwo() {
           <p className="text-2xl mb-5">求職意向: {profession}</p>
         </div>
         <div className="flex flex-col flex-1 gap-6 justify-center ml-5">
-          <p className="text-xl">出生年月: </p>
+          <p className="text-xl">出生年月: {birthday}</p>
           <p className="text-xl">聯繫電話: {phone}</p>
           <p className="text-xl">電子郵件: {mail}</p>
           <p className="text-xl">聯繫地址: {address}</p>
@@ -38,11 +41,11 @@ function ResumeTwo() {
       <div className="">
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="教育經歷" />
-          <div className="text-xl"></div>
+          <div className="text-xl">{education}</div>
         </div>
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="工作經歷" />
-          <div className="text-xl"></div>
+          <div className="text-xl">{workExperience}</div>
         </div>
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="專業技能" />

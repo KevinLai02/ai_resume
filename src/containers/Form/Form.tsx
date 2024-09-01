@@ -40,6 +40,10 @@ function Form() {
       category: "",
       mail: "",
       phone: "",
+      workExperience: "",
+      birthday: "",
+      address: "",
+      education: "",
     },
   });
 
@@ -92,17 +96,37 @@ function Form() {
                   {...register("name", { required: "*此欄位必填" })}
                 />
                 <p className="h-5 text-base text-custom-red-100">
-                  {errors.name && errors.name.message}
+                  {errors.name?.message}
                 </p>
               </div>
               <div className="mt-2">
-                <p className="text-custom-blue-300 text-base">專業</p>
+                <p className="text-custom-blue-300 text-base">專業技能</p>
                 <input
                   className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
                   {...register("talent", { required: "*此欄位必填" })}
                 />
                 <p className="h-5 text-base text-custom-red-100">
-                  {errors.talent && errors.talent.message}
+                  {errors.talent?.message}
+                </p>
+              </div>
+              <div className="mt-2">
+                <p className="text-custom-blue-300 text-base">工作經歷</p>
+                <input
+                  className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                  {...register("workExperience", { required: "*此欄位必填" })}
+                />
+                <p className="h-5 text-base text-custom-red-100">
+                  {errors.workExperience?.message}
+                </p>
+              </div>
+              <div className="mt-2">
+                <p className="text-custom-blue-300 text-base">學歷</p>
+                <input
+                  className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                  {...register("education", { required: "*此欄位必填" })}
+                />
+                <p className="h-5 text-base text-custom-red-100">
+                  {errors.education?.message}
                 </p>
               </div>
               <div className="mt-2">
@@ -112,7 +136,7 @@ function Form() {
                   {...register("profession", { required: "*此欄位必填" })}
                 />
                 <p className="h-5 text-base text-custom-red-100">
-                  {errors.profession && errors.profession.message}
+                  {errors.profession?.message}
                 </p>
               </div>
               <div className="mt-2">
@@ -122,7 +146,7 @@ function Form() {
                   {...register("mail", { required: "*此欄位必填" })}
                 />
                 <p className="h-5 text-base text-custom-red-100">
-                  {errors.mail && errors.mail.message}
+                  {errors.mail?.message}
                 </p>
               </div>
               <div className="mt-2">
@@ -132,8 +156,26 @@ function Form() {
                   {...register("phone", { required: "*此欄位必填" })}
                 />
                 <p className="h-5 text-base text-custom-red-100">
-                  {errors?.phone?.message}
+                  {errors.phone?.message}
                 </p>
+              </div>
+              <div className="mt-2">
+                <p className="text-custom-blue-300 text-base">生日</p>
+                <input
+                  className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                  {...register("birthday", { required: "*此欄位必填" })}
+                />
+                <p className="h-5 text-base text-custom-red-100">
+                  {errors.birthday?.message}
+                </p>
+              </div>
+              <div className="mt-2">
+                <p className="text-custom-blue-300 text-base">住址</p>
+                <input
+                  className="bg-gray-200 w-full border:none rounded-xl p-2 focus:outline-none"
+                  {...register("address")}
+                />
+                <p className="h-5" />
               </div>
               <div className="mt-2">
                 <p className="text-custom-blue-300 text-base">產業類別</p>
