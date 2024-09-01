@@ -9,11 +9,9 @@ const MyApp = (props: any) => {
 
   return (
     <NextUIProvider>
-      {/* <RootStore> */}
       {/* <SessionProvider session={session} basePath="/api/auth"> */}
       <Component {...pageProps} />
       {/* </SessionProvider> */}
-      {/* </RootStore> */}
     </NextUIProvider>
   );
 };
