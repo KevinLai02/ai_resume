@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import { SessionProvider } from 'next-auth/react';
 import "@/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 
 const MyApp = (props: any) => {
   const { Component, pageProps } = props;
-  useEffect(() => {}, []);
 
   return (
     <NextUIProvider>

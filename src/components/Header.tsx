@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 export default function Header() {
   const router = useRouter();
   return (
-    <div className="flex flex-row w-full bg-gray-100 py-5 items-center">
+    <div className="flex flex-row w-full bg-slate-200 py-5 items-center">
       <button
         className="flex justify-center w-20"
         onClick={() => {
