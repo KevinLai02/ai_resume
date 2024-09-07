@@ -103,7 +103,7 @@ function ResumeOne() {
             <div className="bg-main-earth p-5">
               <AreaTitleOne title="experience" iconColor="main-gray" />
             </div>
-            <div className="ml-2">{workExperience}</div>
+            <div className="text-xl ml-2">{workExperience}</div>
           </div>
         </div>
         <div className="bg-main-gray w-full h-10 rounded-br-lg" />
