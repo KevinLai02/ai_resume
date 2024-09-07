@@ -1,5 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { callResume } from "@/api/gemini";
+import {
+  callResume,
+  callRefactorWorkExperience,
+  callRefactorTalent,
+} from "@/api/gemini";
 import { IFormData } from "./types";
 
 class ResumeStore {
@@ -33,24 +37,57 @@ class ResumeStore {
         birthday,
         address,
       } = data;
-      console.log(workExperience);
 
-      const res = await callResume(data);
+      const generateIntroduction = await callResume(data);
+      const refactoredWorkExperience = await this.refactorWorkExperience(
+        workExperience,
+        category,
+      );
+      const refactorTalent = await this.refactorTalent(talent);
+
       runInAction(() => {
         this.name = name;
-        this.talent = talent;
         this.profession = profession;
         this.category = category;
         this.mail = mail;
         this.education = education;
         this.phone = phone;
-        this.workExperience = workExperience;
         this.birthday = birthday;
         this.address = address || "";
       });
 
-      if (res) this.introduction = res;
-      return res;
+      if (generateIntroduction && refactoredWorkExperience && refactorTalent) {
+        runInAction(() => {
+          this.introduction = generateIntroduction;
+          this.workExperience = refactoredWorkExperience;
+          this.talent = refactorTalent;
+        });
+        return "ok";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  refactorWorkExperience = async (workExperience: string, category: string) => {
+    try {
+      const res = await callRefactorWorkExperience(workExperience, category);
+
+      if (res) {
+        return res;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  refactorTalent = async (talent: string) => {
+    try {
+      const res = await callRefactorTalent(talent);
+
+      if (res) {
+        return res;
+      }
     } catch (error) {
       console.log(error);
     }
