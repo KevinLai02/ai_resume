@@ -1,122 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
+import Image from "next/image";
 import { observer } from "mobx-react-lite";
-import { useForm } from "react-hook-form";
-import { useStore } from "@/store";
-import { IFormData } from "../Resume/store/types";
 import { useRouter } from "next/router";
-import Lottie from "lottie-react";
-import LoadingAnimation from "@/../public/lottie/animation_loading.json";
+import Header from "./components/Header";
+import Button from "./components/Button";
 function Main() {
   const router = useRouter();
-  const {
-    ResumeStore: { generateResume },
-  } = useStore();
-  const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm({
-    mode: "onChange",
-    defaultValues: {
-      name: "",
-      talent: "",
-      profession: "",
-      category: "",
-      mail: "",
-      phone: "",
-    },
-  });
-
-  const onSubmit = async (data: IFormData) => {
-    setIsLoading(true);
-    const res = await generateResume(data);
-    if (res) {
-      setIsLoading(false);
-      router.push("/resume");
-    }
-  };
 
   return (
     <div className="flex flex-col flex-1 text-xl">
-      <div className="flex justify-between py-5 px-10 mb-40 bg-slate-200">
-        <div className="flex">
-          歡迎使用<p className="text-sky-400 font-bold">AI智造坊</p>
-        </div>
-        <button
-          onClick={() => {
-            router.push("/interviewer");
-          }}
-        >
-          面試官AI
-        </button>
+      <Header />
+      <div className="flex py-3 px-10 text-3xl justify-center font-bold">
+        可選擇以下方式打造您的履歷
       </div>
-
-      <div className="flex flex-col items-center ">
-        <div className="flex flex-col border-2 border-orange-200 items-center p-5 rounded-md">
-          <p>填寫以下表格</p>
-          <div className="flex flex-row">
-            <div>
-              <div className="m-5">
-                <p>名稱</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("name", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>產業類別</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("category", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>專業</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("talent", { required: true })}
-                />
-              </div>
-            </div>
-            <div>
-              <div className="m-5">
-                <p>曾經的職位</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("profession", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>Gmail</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("mail", { required: true })}
-                />
-              </div>
-              <div className="m-5">
-                <p>連絡電話</p>
-                <input
-                  className="border-2 "
-                  type="text"
-                  {...register("phone", { required: true })}
-                />
-              </div>
-            </div>
-          </div>
-          <button
-            className="flex justify-center w-20 p-3 border-2 rounded-lg border-sky-600 hover:bg-sky-600"
-            onClick={handleSubmit(onSubmit)}
+      <div className="flex h-[80vh] px-10">
+        <div className="flex flex-1 items-end justify-center pb-20">
+          <Image src="/images/lighthouse.png" alt="" height={700} width={700} />
+        </div>
+        <div className="flex flex-1 flex-col w-[30%] py-20 px-32">
+          <Button
+            className="flex-col bg-custom-blue-300 font-bold text-white py-10"
+            onClick={() => {
+              router.push("/template");
+            }}
           >
-            <div>
-              {isLoading ? (
-                <Lottie className="h-5 w-5" animationData={LoadingAnimation} />
-              ) : (
-                <div className="text-sm">生成</div>
-              )}
-            </div>
-          </button>
+            <div className="text-2xl">快速AI履歷生成</div>
+            <div className="text-xl">可選擇不同種類之AI模型</div>
+          </Button>
+          <Button
+            className="flex-col bg-custom-red-100 mt-10 font-bold text-white py-10"
+            onClick={() => {}}
+          >
+            <div className="text-2xl">上傳有關個人之PDF檔</div>
+            <div className="text-xl">藉由掃描PDF檔，生成更個性化的履歷</div>
+          </Button>
+        </div>
+        <div className="flex flex-1 items-end justify-center pb-20">
+          <Image src="/images/robot.png" alt="" height={700} width={700} />
         </div>
       </div>
     </div>

@@ -1,21 +1,4 @@
-// import OpenAI from "openai";
-import { IFormData } from "@/containers/Resume/store/types";
 // import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-export async function callResume(props: IFormData) {
-  const { talent, profession, category } = props;
-  const prompt = `用繁體中文生成一段大約100字有關 [${talent},${profession},${category}] 的繁體中文履歷自我介紹句子`;
-
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
-  return text;
-}
 
 // export async function apiHandler<T = any>(
 //   params: AxiosRequestConfig,

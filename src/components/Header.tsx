@@ -12,7 +12,7 @@ export default function Header() {
       >
         {"<"} 返回
       </button>
-      <p className="text-sky-400 font-bold text-xl">AI智造坊</p>
+      <p className="text-sky-400 font-bold text-xl">AI海事職涯燈塔</p>
     </div>
   );
 }
