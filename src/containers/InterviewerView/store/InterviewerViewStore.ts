@@ -2,7 +2,7 @@ import { useLocalObservable } from "mobx-react-lite";
 const initialState = {
   question: "",
 };
-const InterviewerStore = () => {
+const InterviewerViewStore = () => {
   const store = useLocalObservable(() => ({
     /*observables*/
     ...initialState,
@@ -10,4 +10,4 @@ const InterviewerStore = () => {
 
   return store;
 };
-export default InterviewerStore;
+export default InterviewerViewStore;

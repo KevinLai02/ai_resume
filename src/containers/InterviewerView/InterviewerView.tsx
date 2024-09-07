@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import Header from "@/components/Header";
 
-function Interviewer() {
+function InterviewerView() {
   const [question, setQuestion] = useState("");
   const fakeList = [
     {
@@ -67,4 +67,4 @@ function Interviewer() {
     </div>
   );
 }
-export default observer(Interviewer);
+export default observer(InterviewerView);
