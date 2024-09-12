@@ -2,6 +2,8 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleTwo from "../components/AreaTitleTwo";
+import Image from "next/image";
+
 function ResumeTwo() {
   const {
     ResumeStore: {
@@ -15,6 +17,7 @@ function ResumeTwo() {
       education,
       workExperience,
       birthday,
+      avatar,
     },
   } = rootStore;
 
@@ -34,7 +37,17 @@ function ResumeTwo() {
         <div className="flex items-center">
           <p className="bg-custom-blue-500 h-full w-16" />
           <div className="flex w-[250px] justify-center">
-            <p className="bg-white w-52 h-52 rounded-full" />
+            {avatar ? (
+              <Image
+                src={avatar}
+                alt=""
+                height={208}
+                width={208}
+                className="rounded-full m-8 max-h-[208px] max-w-[208px]"
+              />
+            ) : (
+              <p className="bg-white w-52 h-52 rounded-full" />
+            )}
           </div>
         </div>
       </div>

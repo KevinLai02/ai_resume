@@ -18,6 +18,7 @@ class ResumeStore {
   birthday: string = "";
   workExperience: string = "";
   education: string = "";
+  avatar: string = "";
 
   constructor() {
     makeAutoObservable(this);

@@ -2,6 +2,8 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleOne from "../components/AreaTitleOne";
+import Image from "next/image";
+
 function ResumeOne() {
   const {
     ResumeStore: {
@@ -15,6 +17,7 @@ function ResumeOne() {
       education,
       workExperience,
       birthday,
+      avatar,
     },
   } = rootStore;
 
@@ -30,7 +33,17 @@ function ResumeOne() {
             <div className="ml-12">
               <div className="flex flex-col items-center bg-main-earth w-full h-[220px] mb-[200px]">
                 <div className="absolute bg-white rounded-full mt-[50px]">
-                  <div className="bg-gray-200 w-[280px] h-[280px] rounded-full m-8" />
+                  {avatar ? (
+                    <Image
+                      src={avatar}
+                      alt=""
+                      height={280}
+                      width={280}
+                      className="rounded-full m-8 max-h-[280px] max-w-[280px]"
+                    />
+                  ) : (
+                    <div className="bg-gray-200 w-[280px] h-[280px] rounded-full m-8" />
+                  )}
                 </div>
               </div>
               <div className="px-5">

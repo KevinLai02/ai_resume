@@ -1,11 +1,10 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames";
-import { Button } from "@nextui-org/react";
+import { Button, ButtonProps as NextUIButtonProps } from "@nextui-org/react";
 
-interface IButtonProps {
+interface IButtonProps extends NextUIButtonProps {
   children: ReactNode;
   className?: string;
-  onClick: () => void;
 }
 
 const CustomButton = ({ children, ...props }: IButtonProps) => {
