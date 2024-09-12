@@ -43,7 +43,7 @@ function ResumeTwo() {
                 alt=""
                 height={208}
                 width={208}
-                className="rounded-full m-8 max-h-[208px] max-w-[208px]"
+                className="rounded-full m-8 max-h-[208px] max-w-[208px] min-h-[208px] min-w-[208px]"
               />
             ) : (
               <p className="bg-white w-52 h-52 rounded-full" />

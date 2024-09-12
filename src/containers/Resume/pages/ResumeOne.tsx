@@ -39,7 +39,7 @@ function ResumeOne() {
                       alt=""
                       height={280}
                       width={280}
-                      className="rounded-full m-8 max-h-[280px] max-w-[280px]"
+                      className="rounded-full m-8 max-h-[280px] max-w-[280px] min-h-[280px] min-w-[280px]"
                     />
                   ) : (
                     <div className="bg-gray-200 w-[280px] h-[280px] rounded-full m-8" />
