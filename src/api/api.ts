@@ -10,3 +10,14 @@ export const callResume = async () => {
   });
   return request;
 };
+
+export const callGetQuestion = (data) => {
+  const request = axios({
+    method: "post",
+    url: "http://127.0.0.1:8080/AIspeak/resumeData",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return request;
+};

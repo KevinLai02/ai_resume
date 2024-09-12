@@ -5,6 +5,7 @@ import {
   callRefactorTalent,
 } from "@/api/gemini";
 import { IFormData } from "./types";
+import { callGetQuestion } from "@/api/api";
 
 class ResumeStore {
   introduction: string = "";
@@ -88,6 +89,20 @@ class ResumeStore {
       if (res) {
         return res;
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getQuestionForInterviewer = async () => {
+    try {
+      const res = await callGetQuestion({
+        resumeName: this.name,
+        resumeField1: this.talent,
+        resumeField2: this.profession,
+        resumeField3: this.category,
+        resumeAutobiography: this.introduction,
+      });
+      console.log(res);
     } catch (error) {
       console.log(error);
     }

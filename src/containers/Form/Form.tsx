@@ -23,7 +23,7 @@ const array = [
 function Form() {
   const router = useRouter();
   const {
-    ResumeStore: { generateResume },
+    ResumeStore: { generateResume, getQuestionForInterviewer },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState("");
@@ -53,6 +53,7 @@ function Form() {
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
+    getQuestionForInterviewer();
     const res = await generateResume(data);
     if (res) {
       setIsLoading(false);
