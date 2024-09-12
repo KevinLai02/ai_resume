@@ -10,3 +10,8 @@ export interface IFormData {
   birthday: string;
   address?: string;
 }
+export interface IGenerateData {
+  talent: string;
+  profession: string;
+  category: string;
+}

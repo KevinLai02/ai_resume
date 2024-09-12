@@ -219,7 +219,7 @@ function Form() {
             </div>
             <Button
               isDisabled={!avatar}
-              className="p-3 rounded-lg bg-white"
+              className="p-3 rounded-lg bg-white min-w-[350px]"
               onClick={handleSubmit(onSubmit)}
             >
               <div>

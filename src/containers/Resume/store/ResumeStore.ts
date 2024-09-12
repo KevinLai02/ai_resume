@@ -39,7 +39,11 @@ class ResumeStore {
         address,
       } = data;
 
-      const generateIntroduction = await callResume(data);
+      const generateIntroduction = await callResume({
+        talent,
+        profession,
+        category,
+      });
       const refactoredWorkExperience = await this.refactorWorkExperience(
         workExperience,
         category,
@@ -56,6 +60,32 @@ class ResumeStore {
         this.birthday = birthday;
         this.address = address || "";
       });
+
+      if (generateIntroduction && refactoredWorkExperience && refactorTalent) {
+        runInAction(() => {
+          this.introduction = generateIntroduction;
+          this.workExperience = refactoredWorkExperience;
+          this.talent = refactorTalent;
+        });
+        return "ok";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  reGenerateResume = async () => {
+    try {
+      const generateIntroduction = await callResume({
+        talent: this.talent,
+        profession: this.profession,
+        category: this.category,
+      });
+      const refactoredWorkExperience = await this.refactorWorkExperience(
+        this.workExperience,
+        this.category,
+      );
+      const refactorTalent = await this.refactorTalent(this.talent);
 
       if (generateIntroduction && refactoredWorkExperience && refactorTalent) {
         runInAction(() => {

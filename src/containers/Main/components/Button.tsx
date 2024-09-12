@@ -12,10 +12,7 @@ const CustomButton = ({ children, ...props }: IButtonProps) => {
     <Button
       {...props}
       type="button"
-      className={classNames([
-        "flex-1 border min-w-[350px] rounded-2xl",
-        props.className,
-      ])}
+      className={classNames(["flex-1 border rounded-2xl", props.className])}
     >
       {children}
     </Button>
