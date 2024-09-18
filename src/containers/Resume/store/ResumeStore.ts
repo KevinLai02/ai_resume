@@ -1,9 +1,10 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import {
-  callResume,
+  callGeminiResume,
   callRefactorWorkExperience,
   callRefactorTalent,
 } from "@/api/gemini";
+import { callAlpacaResume } from "@/api/api";
 import { IFormData } from "./types";
 
 class ResumeStore {
@@ -24,7 +25,7 @@ class ResumeStore {
     makeAutoObservable(this);
   }
 
-  generateResume = async (data: IFormData) => {
+  geminiGenerateResume = async (data: IFormData) => {
     try {
       const {
         name,
@@ -39,7 +40,7 @@ class ResumeStore {
         address,
       } = data;
 
-      const generateIntroduction = await callResume({
+      const generateIntroduction = await callGeminiResume({
         talent,
         profession,
         category,
@@ -74,9 +75,59 @@ class ResumeStore {
     }
   };
 
+  alpacaGenerateResume = async (data: IFormData) => {
+    try {
+      const {
+        name,
+        talent,
+        profession,
+        category,
+        mail,
+        phone,
+        education,
+        workExperience,
+        birthday,
+        address,
+      } = data;
+
+      const generateIntroduction = await callAlpacaResume({
+        talent,
+        profession,
+        category,
+      });
+      const refactoredWorkExperience = await this.refactorWorkExperience(
+        workExperience,
+        category,
+      );
+      const refactorTalent = await this.refactorTalent(talent);
+
+      runInAction(() => {
+        this.name = name;
+        this.profession = profession;
+        this.category = category;
+        this.mail = mail;
+        this.education = education;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.address = address || "";
+      });
+
+      if (generateIntroduction && refactoredWorkExperience && refactorTalent) {
+        runInAction(() => {
+          this.introduction = generateIntroduction?.data?.message;
+          this.workExperience = refactoredWorkExperience;
+          this.talent = refactorTalent;
+        });
+        return "ok";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   reGenerateResume = async () => {
     try {
-      const generateIntroduction = await callResume({
+      const generateIntroduction = await callGeminiResume({
         talent: this.talent,
         profession: this.profession,
         category: this.category,

@@ -6,7 +6,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-export async function callResume(props: IGenerateData) {
+export async function callGeminiResume(props: IGenerateData) {
   const { talent, profession, category } = props;
   const prompt = `用繁體中文生成一段350字有關 [${talent},${profession},${category}] 的繁體中文履歷自我介紹句子`;
 
