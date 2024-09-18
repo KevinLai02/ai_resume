@@ -25,7 +25,7 @@ const array = [
 function Form() {
   const router = useRouter();
   const {
-    ResumeStore: { avatar, generateResume },
+    ResumeStore: { avatar, generateResume, getInterviewQuestion },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState("");
@@ -55,8 +55,10 @@ function Form() {
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
+
     const res = await generateResume(data);
     if (res) {
+      // getInterviewQuestion(data);
       setIsLoading(false);
       router.push("/resume");
     }
@@ -73,6 +75,14 @@ function Form() {
     <div className="flex flex-col flex-1 text-xl">
       <Header />
       <div>
+        <button
+          onClick={() => {
+            getInterviewQuestion();
+          }}
+        >
+          {" "}
+          test
+        </button>
         <Button
           className="min-w-32 mt-5 ml-10 font-bold bg-blue-200 border-none"
           onClick={() => {
