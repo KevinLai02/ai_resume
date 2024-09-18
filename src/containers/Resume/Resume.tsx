@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import Header from "@/components/Header";
 import ResumeOne from "./pages/ResumeOne";
 import ResumeTwo from "./pages/ResumeTwo";
+import ResumeThree from "./pages/ResumeThree";
 import rootStore from "@/store";
 import { Templates } from "../Template/types";
 import Button from "@/containers/Main/components/Button";
@@ -40,6 +41,7 @@ function Resume() {
       </Button>
       {template === Templates.ONE && <ResumeOne />}
       {template === Templates.TWO && <ResumeTwo />}
+      {template === Templates.THREE && <ResumeThree />}
     </div>
   );
 }
