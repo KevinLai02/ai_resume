@@ -56,7 +56,7 @@ function Form() {
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
     let res;
-    switch (AIModels[0].name) {
+    switch (model) {
       case Model.ALPACA:
         res = await alpacaGenerateResume(data);
         break;
