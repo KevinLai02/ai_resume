@@ -9,11 +9,15 @@ import { Templates } from "../Template/types";
 import Button from "@/containers/Main/components/Button";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
+import { usePDF } from "react-to-pdf";
+import { FaFileDownload } from "react-icons/fa";
+
 function Resume() {
   const {
     TemplateStore: { template },
     ResumeStore: { reGenerateResume },
   } = rootStore;
+  const { toPDF, targetRef } = usePDF({ filename: "resume.pdf" });
   const [isLoading, setIsLoading] = useState(false);
 
   const regenerate = async () => {
@@ -26,6 +30,10 @@ function Resume() {
   return (
     <div className="flex flex-col flex-1 items-center">
       <Header />
+      <Button className="p-3 mt-5 rounded-lg bg-white" onClick={() => toPDF()}>
+        <p className="font-bold">點擊下載履歷</p>
+        <FaFileDownload />
+      </Button>
       <Button
         isDisabled={isLoading}
         className="p-3 mt-5 rounded-lg bg-white"
@@ -39,9 +47,9 @@ function Resume() {
           )}
         </div>
       </Button>
-      {template === Templates.ONE && <ResumeOne />}
-      {template === Templates.TWO && <ResumeTwo />}
-      {template === Templates.THREE && <ResumeThree />}
+      {template === Templates.ONE && <ResumeOne ref={targetRef} />}
+      {template === Templates.TWO && <ResumeTwo ref={targetRef} />}
+      {template === Templates.THREE && <ResumeThree ref={targetRef} />}
     </div>
   );
 }

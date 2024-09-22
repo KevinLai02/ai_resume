@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import { GrHomeRounded, GrMail, GrPhone } from "react-icons/gr";
 import Image from "next/image";
 
-function ResumeThree() {
+const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
   const {
     ResumeStore: {
       introduction,
@@ -20,10 +20,13 @@ function ResumeThree() {
   } = rootStore;
 
   return (
-    <div className="flex flex-col w-[1200px] h-[1600px] my-10 bg-white">
+    <div
+      className="flex flex-col w-[1190px] h-[1682px] my-10 bg-white"
+      ref={ref}
+    >
       <div className="flex flex-col items-center bg-custom-brown-100 w-full h-[550px] p-7">
         <div className="flex w-[250px] justify-center mt-2">
-          {avatar ? (
+          {!avatar ? (
             <Image
               src={avatar}
               alt=""
@@ -72,6 +75,6 @@ function ResumeThree() {
       </div>
     </div>
   );
-}
-
+});
+ResumeThree.displayName = "ResumeThree";
 export default observer(ResumeThree);

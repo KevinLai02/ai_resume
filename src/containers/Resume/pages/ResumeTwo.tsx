@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleTwo from "../components/AreaTitleTwo";
 import Image from "next/image";
 
-function ResumeTwo() {
+const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
   const {
     ResumeStore: {
       introduction,
@@ -22,7 +22,7 @@ function ResumeTwo() {
   } = rootStore;
 
   return (
-    <div className="w-[1200px] h-[1600px] my-10 bg-custom-blue-100">
+    <div className="w-[1190px] h-[1682px] my-10 bg-custom-blue-100" ref={ref}>
       <div className="flex bg-custom-blue-400 text-white mt-10">
         <div className="flex flex-col flex-1 items-center my-5">
           <p className="text-6xl my-10">{name}</p>
@@ -71,6 +71,6 @@ function ResumeTwo() {
       </div>
     </div>
   );
-}
-
+});
+ResumeTwo.displayName = "ResumeTwo";
 export default observer(ResumeTwo);
