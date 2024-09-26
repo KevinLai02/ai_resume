@@ -58,7 +58,6 @@ function Form() {
 
     const res = await generateResume(data);
     if (res) {
-      // getInterviewQuestion(data);
       setIsLoading(false);
       router.push("/resume");
     }
@@ -75,17 +74,9 @@ function Form() {
     <div className="flex flex-col flex-1 text-xl">
       <Header />
       <div>
-        <button
-          onClick={() => {
-            getInterviewQuestion();
-          }}
-        >
-          {" "}
-          test
-        </button>
         <Button
           className="min-w-32 mt-5 ml-10 font-bold bg-blue-200 border-none"
-          onClick={() => {
+          onClick={async () => {
             router.push("/template");
           }}
         >

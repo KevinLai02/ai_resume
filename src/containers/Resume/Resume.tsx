@@ -8,13 +8,15 @@ import { Templates } from "../Template/types";
 import Button from "@/containers/Main/components/Button";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
+import { useRouter } from "next/router";
 function Resume() {
+  const router = useRouter();
   const {
     TemplateStore: { template },
-    ResumeStore: { reGenerateResume },
+    ResumeStore: { reGenerateResume, getInterviewQuestion },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
-
+  const [questionLoading, setQuestionLoading] = useState(false);
   const regenerate = async () => {
     setIsLoading(true);
     const res = await reGenerateResume();
@@ -22,9 +24,27 @@ function Resume() {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="flex flex-col flex-1 items-center">
       <Header />
+      <Button
+        className="p-3 mt-5 rounded-lg bg-white"
+        onClick={async () => {
+          setQuestionLoading(true);
+          await getInterviewQuestion();
+          setQuestionLoading(false);
+          router.push("/Interviewer");
+        }}
+      >
+        <div>
+          {questionLoading ? (
+            <Lottie className="h-7 w-7" animationData={LoadingAnimation} />
+          ) : (
+            <div>前往面試官</div>
+          )}
+        </div>
+      </Button>
       <Button
         isDisabled={isLoading}
         className="p-3 mt-5 rounded-lg bg-white"

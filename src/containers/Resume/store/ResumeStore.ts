@@ -5,7 +5,7 @@ import {
   callRefactorTalent,
 } from "@/api/gemini";
 import { IFormData } from "./types";
-import { callGetInterviewQuestion } from "@/api/interviewer";
+import { callGetInterviewQuestion, callRateAnswer } from "@/api/interviewer";
 
 class ResumeStore {
   introduction: string = "";
@@ -20,7 +20,9 @@ class ResumeStore {
   workExperience: string = "";
   education: string = "";
   avatar: string = "";
-
+  score: string = "";
+  questionArray: string[] = [];
+  answerArray: string[] = [];
   constructor() {
     makeAutoObservable(this);
   }
@@ -68,7 +70,6 @@ class ResumeStore {
           this.workExperience = refactoredWorkExperience;
           this.talent = refactorTalent;
         });
-        this.getInterviewQuestion();
         return "ok";
       }
     } catch (error) {
@@ -127,26 +128,40 @@ class ResumeStore {
   };
   getInterviewQuestion = async () => {
     try {
-      // const res = await callGetInterviewQuestion({
-      //   EducationalQualifications: this.education,
-      //   WorkExperience: this.workExperience,
-      //   ProfessionalSkills: this.profession,
-      //   TechnicalField: this.category,
-      //   resumeAutobiography: this.introduction,
-      // });
-      console.log(123);
       const res = await callGetInterviewQuestion({
-        EducationalQualifications: "大學畢業",
-        WorkExperience: "沒有經驗",
-        ProfessionalSkills: "擅長python程式語言",
-        TechnicalField: "海事資訊科技系",
-        resumeAutobiography:
-          "我是一名大學畢業生，主修海事資訊科技系。在大學期間，我不僅掌握了該領域的 專業知識，還積極學習了Python程式語言，並在此方面展現了較強的能力。雖然我目前沒有正式的工作經驗，但在學習過程中， 我參與了多個課程專案，這些專案使我能夠將理論與實踐相結合，並進一步提高了我的技術技能。海事資訊科技是一個多元且 充滿挑戰的領域，結合了資訊技術與海事應用的知識。在學習過程中，我對相關技術和應用有了深刻的理解，並且我發現自己 對使用程式語言解決問題充滿興趣。特別是Python語言，它的靈活性和強大功能讓我能夠快速開發出解決方案，並應用於不同 的技術環境中。儘管我目前缺乏工作經驗，但我相信憑藉我對程式設計的熱忱、扎實的專業基礎以及快速學習新技能的能力， 我能夠在未來的職涯中充分發揮我的潛力。我期望能夠在工作中繼續提升自己，並為公司和團隊帶來有價值的貢獻。",
+        EducationalQualifications: this.education,
+        WorkExperience: this.workExperience,
+        ProfessionalSkills: this.profession,
+        TechnicalField: this.category,
+        resumeAutobiography: this.introduction,
       });
-      console.log(res);
+
+      runInAction(() => {
+        this.score = "";
+        this.questionArray = res.data.llmAnwser;
+      });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  rateAnswer = async () => {
+    const res = await callRateAnswer({
+      q1: this.questionArray[0],
+      a1: this.answerArray[0],
+      q2: this.questionArray[1],
+      a2: this.answerArray[1],
+      q3: this.questionArray[2],
+      a3: this.answerArray[2],
+      q4: this.questionArray[3],
+      a4: this.answerArray[3],
+      q5: this.questionArray[4],
+      a5: this.answerArray[4],
+    });
+    runInAction(() => {
+      this.score = res.data.RateAnwser;
+      this.answerArray = [];
+    });
   };
 }
 export default ResumeStore;
