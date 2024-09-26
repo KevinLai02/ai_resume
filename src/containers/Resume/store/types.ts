@@ -14,4 +14,10 @@ export interface IGenerateData {
   talent: string;
   profession: string;
   category: string;
+  workExperience: string;
+}
+export interface IGeminiGenerateData {
+  talent: string;
+  profession: string;
+  category: string;
 }
