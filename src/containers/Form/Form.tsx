@@ -15,7 +15,7 @@ import { Model } from "./types";
 import Image from "next/image";
 import { runInAction } from "mobx";
 
-const array = [
+const AIModels = [
   { id: 1, name: Model.ALPACA },
   { id: 2, name: Model.LLAMA },
   { id: 3, name: Model.GEMINI },
@@ -25,7 +25,7 @@ const array = [
 function Form() {
   const router = useRouter();
   const {
-    ResumeStore: { avatar, generateResume, getInterviewQuestion },
+    ResumeStore: { avatar, geminiGenerateResume, alpacaGenerateResume },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState("");
@@ -55,8 +55,15 @@ function Form() {
 
   const onSubmit = async (data: IFormData) => {
     setIsLoading(true);
-
-    const res = await generateResume(data);
+    let res;
+    switch (model) {
+      case Model.ALPACA:
+        res = await alpacaGenerateResume(data);
+        break;
+      case Model.GEMINI:
+        res = await geminiGenerateResume(data);
+        break;
+    }
     if (res) {
       setIsLoading(false);
       router.push("/resume");
@@ -88,7 +95,7 @@ function Form() {
           <Dropdown
             value={model}
             placeholder="模型選擇"
-            list={array}
+            list={AIModels}
             handleChange={dropdownChange}
           />
         </div>

@@ -13,7 +13,8 @@ module.exports = {
         "main-earth": "#F5F0EA",
         custom: {
           brown: {
-            100: "#8C705A",
+            100: "#BDAE8C",
+            200: "#8C705A",
           },
           blue: {
             100: "#DBE7EF",

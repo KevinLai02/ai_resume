@@ -46,7 +46,7 @@ function Template() {
             });
           }}
         >
-          <Image src="/images/template1.png" alt="" height={300} width={300} />
+          <Image src="/images/template3.png" alt="" height={300} width={300} />
         </Link>
       </div>
     </div>
