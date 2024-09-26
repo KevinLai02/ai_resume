@@ -90,16 +90,12 @@ class ResumeStore {
         address,
       } = data;
 
-      const generateIntroduction = await callAlpacaResume({
+      const res = await callAlpacaResume({
         talent,
         profession,
         category,
-      });
-      const refactoredWorkExperience = await this.refactorWorkExperience(
         workExperience,
-        category,
-      );
-      const refactorTalent = await this.refactorTalent(talent);
+      });
 
       runInAction(() => {
         this.name = name;
@@ -112,11 +108,15 @@ class ResumeStore {
         this.address = address || "";
       });
 
-      if (generateIntroduction && refactoredWorkExperience && refactorTalent) {
+      if (
+        res?.data?.introduction &&
+        res?.data?.workExperience &&
+        res?.data?.talent
+      ) {
         runInAction(() => {
-          this.introduction = generateIntroduction?.data?.message;
-          this.workExperience = refactoredWorkExperience;
-          this.talent = refactorTalent;
+          this.introduction = res?.data?.introduction;
+          this.workExperience = res?.data?.workExperience;
+          this.talent = res?.data?.talent;
         });
         return "ok";
       }
