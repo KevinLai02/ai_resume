@@ -4,29 +4,30 @@ import Header from "@/components/Header";
 import { BsMicFill } from "react-icons/bs";
 import rootStore from "@/store";
 import { runInAction } from "mobx";
-
+import Lottie from "lottie-react";
+import LoadingAnimation from "@/../public/lottie/animation_loading.json";
 function Interviewer() {
   const [talkList, setTalkList] = useState<{ role: string; text: string }[]>(
-    [],
+    []
   );
   const [text, setText] = useState<string>("");
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
-    null,
+    null
   );
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(
-    null,
+    null
   );
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [language, setLanguage] = useState<string>("zh-TW");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
+  const [isReGenerate, setIsReGenerate] = useState<boolean>(false);
   const {
     ResumeStore: {
       questionArray,
       score,
       answerArray,
+      language,
       rateAnswer,
       getInterviewQuestion,
     },
@@ -78,13 +79,15 @@ function Interviewer() {
       setIsProcessing(false);
     }
   };
-
   const handleSubmitAnswer = async () => {
     if (isSubmitting) return;
 
     runInAction(() => answerArray.push(text));
 
-    if (currentQuestionIndex < questionArray.length - 1) {
+    if (
+      currentQuestionIndex <= questionArray.length - 2 &&
+      answerArray.length <= 5
+    ) {
       setTalkList((prevState) => [
         ...prevState,
         { role: "user", text },
@@ -96,7 +99,6 @@ function Interviewer() {
       setTalkList((prevState) => [...prevState, { role: "user", text }]);
       setText("");
       setIsSubmitting(true);
-
       try {
         await rateAnswer();
       } catch (error) {
@@ -110,7 +112,7 @@ function Interviewer() {
   useEffect(() => {
     if (talkList.length > 0 && talkList[talkList.length - 1].role === "AI") {
       const utterance = new SpeechSynthesisUtterance(
-        talkList[talkList.length - 1].text,
+        talkList[talkList.length - 1].text
       );
       utterance.lang = "zh-TW";
       utterance.rate = 1.5;
@@ -118,7 +120,8 @@ function Interviewer() {
     }
   }, [talkList, language]);
 
-  const reInterview = () => {
+  const reInterview = async () => {
+    setIsReGenerate(true);
     runInAction(() => {
       rootStore.ResumeStore.score = "";
       rootStore.ResumeStore.answerArray = [];
@@ -126,18 +129,26 @@ function Interviewer() {
     });
     setTalkList([]);
     setCurrentQuestionIndex(0);
-    getInterviewQuestion();
+    await getInterviewQuestion();
+    setIsReGenerate(false);
   };
 
   return (
     <div className="flex flex-col flex-1 min-h-screen">
       <Header />
       <div className="flex flex-col flex-1 items-center justify-between w-full px-80 py-5">
-        <div className="flex flex-1 flex-col items-center gap-5 p-5 w-full overflow-y-auto">
+        <div className="flex flex-1 flex-col items-center gap-5 p-5 w-full overflow-y-scroll basis-0">
+          {isReGenerate && (
+            <div className="flex gap-5">
+              <p>面試問題產生中</p>
+              <Lottie className="h-7 w-7" animationData={LoadingAnimation} />
+            </div>
+          )}
+
           {talkList.map((data, index) => (
             <div
               key={index}
-              className={`flex p-3 break-words word-break rounded-lg overflow-wrap ${
+              className={`flex p-3 break-words word-break rounded-lg overflow-wrap max-w-[60%] ${
                 data.role === "AI"
                   ? "bg-slate-200 self-start"
                   : "bg-green-300 self-end"
@@ -160,14 +171,14 @@ function Interviewer() {
                   onClick={reInterview}
                   className="bg-orange-300 p-5 rounded-xl"
                 >
-                  重新面試
+                  重新出題
                 </button>
               </div>
             )
           )}
         </div>
         {!score && (
-          <div className="w-full">
+          <div className="w-full mt-5">
             <div className="flex w-full border-2 border-black rounded-full px-4 mb-5 bg-slate-100">
               <BsMicFill
                 className={`h-6 w-6 cursor-pointer place-self-center ${isRecording ? "text-red-500" : "text-gray-500"}`}
@@ -189,16 +200,6 @@ function Interviewer() {
               >
                 ↑
               </button>
-            </div>
-            <div className="flex w-full justify-center mb-5">
-              <select
-                className="p-2 border rounded"
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                <option value="zh-TW">中文</option>
-                <option value="en-US">英文</option>
-              </select>
             </div>
           </div>
         )}

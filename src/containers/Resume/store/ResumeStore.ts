@@ -24,6 +24,7 @@ class ResumeStore {
   score: string = "";
   questionArray: string[] = [];
   answerArray: string[] = [];
+  language: string = "zh-TW";
   constructor() {
     makeAutoObservable(this);
   }
@@ -191,6 +192,7 @@ class ResumeStore {
         this.score = "";
         this.questionArray = res.data.llmAnwser;
       });
+      return res;
     } catch (error) {
       console.log(error);
     }
