@@ -3,7 +3,7 @@ import { IGeminiGenerateData } from "@/containers/Resume/store/types";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyBCTm51g0ZA3WIxJWUlb747xAsE-icyO2g");
+const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export async function callGeminiResume(props: IGeminiGenerateData) {
