@@ -31,8 +31,8 @@ function Main() {
             className="flex-col bg-custom-red-100 mt-10 font-bold text-white py-10"
             onClick={() => {}}
           >
-            <div className="text-2xl">上傳有關個人之PDF檔</div>
-            <div className="text-xl">藉由掃描PDF檔，生成更個性化的履歷</div>
+            <div className="text-2xl">上傳個人之履歷PDF檔</div>
+            <div className="text-xl">藉由掃描履歷，體驗AI模擬面試</div>
           </Button>
         </div>
         <div className="flex flex-1 items-end justify-center pb-20">

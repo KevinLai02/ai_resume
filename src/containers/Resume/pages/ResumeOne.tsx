@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleOne from "../components/AreaTitleOne";
 import Image from "next/image";
+import { runInAction } from "mobx";
+import TextArea from "../components/TextArea";
 
 const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
   const {
@@ -88,7 +90,18 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
           </div>
           <div className="flex-1 mt-10 ml-11 bg-main-earth py-5 px-8">
             <AreaTitleOne title="education" iconColor="main-gray" />
-            <p className="text-xl px-5 pt-10">{education}</p>
+            {/* <p className="text-xl px-5 pt-10">{education}</p> */}
+            <p className="text-xl px-5 pt-10">{"123 123 \n 123 123"}</p>
+            {/* <TextArea
+              className="text-xl px-5 pt-6"
+              value={education}
+              rows={25}
+              onChange={(e) => {
+                runInAction(() => {
+                  rootStore.ResumeStore.education = e.target.value;
+                });
+              }}
+            /> */}
           </div>
         </div>
         <div className="flex">
@@ -102,13 +115,31 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
           <div className="flex-1">
             <div className="border-b-4 pb-5 pt-[100px]">
               <div className="ml-2 text-[60px]">{name}</div>
-              <div className="ml-2 text-2xl">{profession}</div>
+              <TextArea
+                className="ml-2 text-2xl"
+                value={profession}
+                rows={1}
+                onChange={(e) => {
+                  runInAction(() => {
+                    rootStore.ResumeStore.profession = e.target.value;
+                  });
+                }}
+              />
             </div>
             <div className="mt-5">
               <div className="bg-main-earth py-5 px-5">
                 <AreaTitleOne title="about me" iconColor="main-gray" />
               </div>
-              <p className="text-xl px-5 pt-10">{introduction}</p>
+              <TextArea
+                className="text-xl px-5 pt-6"
+                value={introduction}
+                rows={14}
+                onChange={(e) => {
+                  runInAction(() => {
+                    rootStore.ResumeStore.introduction = e.target.value;
+                  });
+                }}
+              />
             </div>
           </div>
           <div className="flex-1">
