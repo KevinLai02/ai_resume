@@ -83,7 +83,7 @@ function Form() {
       <div>
         <Button
           className="min-w-32 mt-5 ml-10 font-bold bg-blue-200 border-none"
-          onClick={() => {
+          onClick={async () => {
             router.push("/template");
           }}
         >

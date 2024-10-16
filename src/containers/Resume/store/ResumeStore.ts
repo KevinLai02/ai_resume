@@ -6,6 +6,7 @@ import {
 } from "@/api/gemini";
 import { callAlpacaResume } from "@/api/api";
 import { IFormData } from "./types";
+import { callGetInterviewQuestion, callRateAnswer } from "@/api/interviewer";
 
 class ResumeStore {
   introduction: string = "";
@@ -20,7 +21,10 @@ class ResumeStore {
   workExperience: string = "";
   education: string = "";
   avatar: string = "";
-
+  score: string = "";
+  questionArray: string[] = [];
+  answerArray: string[] = [];
+  language: string = "zh-TW";
   constructor() {
     makeAutoObservable(this);
   }
@@ -173,6 +177,44 @@ class ResumeStore {
     } catch (error) {
       console.log(error);
     }
+  };
+  getInterviewQuestion = async () => {
+    try {
+      const res = await callGetInterviewQuestion({
+        EducationalQualifications: this.education,
+        WorkExperience: this.workExperience,
+        ProfessionalSkills: this.profession,
+        TechnicalField: this.category,
+        resumeAutobiography: this.introduction,
+      });
+
+      runInAction(() => {
+        this.score = "";
+        this.questionArray = res.data.llmAnwser;
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  rateAnswer = async () => {
+    const res = await callRateAnswer({
+      q1: this.questionArray[0],
+      a1: this.answerArray[0],
+      q2: this.questionArray[1],
+      a2: this.answerArray[1],
+      q3: this.questionArray[2],
+      a3: this.answerArray[2],
+      q4: this.questionArray[3],
+      a4: this.answerArray[3],
+      q5: this.questionArray[4],
+      a5: this.answerArray[4],
+    });
+    runInAction(() => {
+      this.score = res.data.RateAnwser;
+      this.answerArray = [];
+    });
   };
 }
 export default ResumeStore;
