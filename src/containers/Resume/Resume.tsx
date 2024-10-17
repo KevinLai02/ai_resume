@@ -45,7 +45,7 @@ function Resume() {
       <Header />
       <div className="flex gap-40 mt-5">
         <Button
-          isDisabled={isLoading}
+          isDisabled={isLoading || isEditing}
           className="p-3 rounded-lg bg-white hover:bg-zinc-200"
           onClick={regenerate}
         >
@@ -78,6 +78,7 @@ function Resume() {
         </Button>
         <Button
           className="p-5 rounded-lg bg-white hover:bg-zinc-200"
+          isDisabled={isEditing}
           onClick={() => toPDF()}
         >
           <div className="flex items-center text-lg font-bold">
@@ -90,6 +91,7 @@ function Resume() {
         <div className="flex gap-2">
           <Button
             className="p-3 rounded-lg bg-white hover:bg-zinc-200"
+            isDisabled={isEditing}
             onClick={async () => {
               setQuestionLoading(true);
               const res = await getInterviewQuestion();
