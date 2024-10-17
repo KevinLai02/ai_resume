@@ -164,45 +164,59 @@ function Interviewer() {
             <div className="text-red-500">正在評分，請稍等...</div>
           ) : (
             score && (
-              <div className="flex flex-col items-center bg-yellow-100 p-5 rounded-2xl">
-                <div>模擬面試已結束，以下是給你的評語</div>
-                <div>{score}</div>
-                <button
-                  onClick={reInterview}
-                  className="bg-orange-300 p-5 rounded-xl"
-                >
-                  重新出題
-                </button>
+              <div className="fixed inset-0 z-20 bg-black bg-opacity-50 flex justify-center items-center">
+                <div className="flex flex-col items-center bg-yellow-100 p-5 rounded-2xl w-96 h-auto max-h-screen overflow-y-auto">
+                  <div className="text-center mb-4">
+                    模擬面試已結束，以下是給你的評語
+                  </div>
+                  <div className="text-lg font-bold mb-6">{score}</div>
+                  <div className="flex w-full justify-between">
+                    <button
+                      onClick={() => {
+                        runInAction(() => {
+                          rootStore.ResumeStore.score = "";
+                        });
+                      }}
+                      className="bg-green-300 px-6 py-3 rounded-xl"
+                    >
+                      離開
+                    </button>
+                    <button
+                      onClick={reInterview}
+                      className="bg-orange-300 px-6 py-3 rounded-xl"
+                    >
+                      重新出題
+                    </button>
+                  </div>
+                </div>
               </div>
             )
           )}
         </div>
-        {!score && (
-          <div className="w-full mt-5">
-            <div className="flex w-full border-2 border-black rounded-full px-4 mb-5 bg-slate-100">
-              <BsMicFill
-                className={`h-6 w-6 cursor-pointer place-self-center ${isRecording ? "text-red-500" : "text-gray-500"}`}
-                onClick={startRecording}
-              />
-              <textarea
-                className="flex-1 py-5 px-4 rounded-full bg-transparent outline-none resize-none overflow-hidden"
-                rows={1}
-                value={text}
-                disabled={isRecording || isSubmitting}
-                maxLength={300}
-                onChange={(e) => setText(e.target.value)}
-                style={{ whiteSpace: "pre-wrap", overflowY: "auto" }}
-              />
-              <button
-                className="h-12 w-12 rounded-full bg-slate-300 text-2xl self-center"
-                onClick={handleSubmitAnswer}
-                disabled={isSubmitting}
-              >
-                ↑
-              </button>
-            </div>
+        <div className="w-full mt-5">
+          <div className="flex w-full border-2 border-black rounded-full px-4 mb-5 bg-slate-100">
+            <BsMicFill
+              className={`h-6 w-6 cursor-pointer place-self-center ${isRecording ? "text-red-500" : "text-gray-500"}`}
+              onClick={startRecording}
+            />
+            <textarea
+              className="flex-1 py-5 px-4 rounded-full bg-transparent outline-none resize-none overflow-hidden"
+              rows={1}
+              value={text}
+              disabled={isRecording || isSubmitting}
+              maxLength={300}
+              onChange={(e) => setText(e.target.value)}
+              style={{ whiteSpace: "pre-wrap", overflowY: "auto" }}
+            />
+            <button
+              className="h-12 w-12 rounded-full bg-slate-200 text-2xl self-center"
+              onClick={handleSubmitAnswer}
+              disabled={isSubmitting || isReGenerate}
+            >
+              ↑
+            </button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
