@@ -8,7 +8,7 @@ import TextArea from "../components/TextArea";
 
 const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
   const {
-    ResumeStore: {
+    resumeStore: {
       introduction,
       name,
       // talent,
@@ -98,7 +98,7 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
                 rows={25}
                 onChange={(e) => {
                   runInAction(() => {
-                    rootStore.ResumeStore.education = e.target.value;
+                    rootStore.resumeStore.education = e.target.value;
                   });
                 }}
               />
@@ -125,7 +125,7 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
                   rows={1}
                   onChange={(e) => {
                     runInAction(() => {
-                      rootStore.ResumeStore.profession = e.target.value;
+                      rootStore.resumeStore.profession = e.target.value;
                     });
                   }}
                 />
@@ -144,7 +144,7 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
                   rows={14}
                   onChange={(e) => {
                     runInAction(() => {
-                      rootStore.ResumeStore.introduction = e.target.value;
+                      rootStore.resumeStore.introduction = e.target.value;
                     });
                   }}
                 />
@@ -166,7 +166,7 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
                 rows={14}
                 onChange={(e) => {
                   runInAction(() => {
-                    rootStore.ResumeStore.workExperience = e.target.value;
+                    rootStore.resumeStore.workExperience = e.target.value;
                   });
                 }}
               />

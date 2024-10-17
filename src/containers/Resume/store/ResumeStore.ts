@@ -4,7 +4,7 @@ import {
   callRefactorWorkExperience,
   callRefactorTalent,
 } from "@/api/gemini";
-import { callAlpacaResume } from "@/api/api";
+import { callAlpacaResume, callUploadResume } from "@/api/api";
 import { IFormData } from "./types";
 import { callGetInterviewQuestion, callRateAnswer } from "@/api/interviewer";
 
@@ -217,6 +217,22 @@ class ResumeStore {
       this.score = res.data.RateAnwser;
       this.answerArray = [];
     });
+  };
+
+  uploadResume = async (e: any) => {
+    try {
+      const data = new FormData();
+      const file = e.target.files[0];
+      data.append("file", file);
+      const res = await callUploadResume(data);
+      runInAction(() => {
+        this.score = "";
+        this.questionArray = res.data.llmAnwser;
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 export default ResumeStore;

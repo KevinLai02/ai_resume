@@ -21,8 +21,8 @@ import classNames from "classnames";
 function Resume() {
   const router = useRouter();
   const {
-    TemplateStore: { template },
-    ResumeStore: {
+    templateStore: { template },
+    resumeStore: {
       isEditing,
       language,
       reGenerateResume,
@@ -64,8 +64,8 @@ function Resume() {
           className="p-3 rounded-lg bg-white hover:bg-zinc-200"
           onClick={() => {
             runInAction(() => {
-              rootStore.ResumeStore.isEditing =
-                !rootStore.ResumeStore.isEditing;
+              rootStore.resumeStore.isEditing =
+                !rootStore.resumeStore.isEditing;
             });
           }}
         >
@@ -113,7 +113,7 @@ function Resume() {
               value={language}
               onChange={(e) =>
                 runInAction(() => {
-                  rootStore.ResumeStore.language = e.target.value;
+                  rootStore.resumeStore.language = e.target.value;
                 })
               }
             >

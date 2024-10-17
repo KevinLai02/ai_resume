@@ -8,22 +8,22 @@ import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
 function Interviewer() {
   const [talkList, setTalkList] = useState<{ role: string; text: string }[]>(
-    []
+    [],
   );
   const [text, setText] = useState<string>("");
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
-    null
+    null,
   );
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(
-    null
+    null,
   );
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isReGenerate, setIsReGenerate] = useState<boolean>(false);
   const {
-    ResumeStore: {
+    resumeStore: {
       questionArray,
       score,
       answerArray,
@@ -112,7 +112,7 @@ function Interviewer() {
   useEffect(() => {
     if (talkList.length > 0 && talkList[talkList.length - 1].role === "AI") {
       const utterance = new SpeechSynthesisUtterance(
-        talkList[talkList.length - 1].text
+        talkList[talkList.length - 1].text,
       );
       utterance.lang = "zh-TW";
       utterance.rate = 1.5;
@@ -123,9 +123,9 @@ function Interviewer() {
   const reInterview = async () => {
     setIsReGenerate(true);
     runInAction(() => {
-      rootStore.ResumeStore.score = "";
-      rootStore.ResumeStore.answerArray = [];
-      rootStore.ResumeStore.questionArray = [];
+      rootStore.resumeStore.score = "";
+      rootStore.resumeStore.answerArray = [];
+      rootStore.resumeStore.questionArray = [];
     });
     setTalkList([]);
     setCurrentQuestionIndex(0);
@@ -174,7 +174,7 @@ function Interviewer() {
                     <button
                       onClick={() => {
                         runInAction(() => {
-                          rootStore.ResumeStore.score = "";
+                          rootStore.resumeStore.score = "";
                         });
                       }}
                       className="bg-green-300 px-6 py-3 rounded-xl"

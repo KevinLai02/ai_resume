@@ -12,3 +12,15 @@ export const callAlpacaResume = async (data: IGenerateData) => {
   });
   return request;
 };
+
+export const callUploadResume = async (data: any) => {
+  const request = axios({
+    method: "post",
+    url: "http://localhost:8080/upload",
+    headers: {
+      Accept: "multipart/form-data",
+    },
+    data,
+  });
+  return request;
+};

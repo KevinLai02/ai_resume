@@ -8,7 +8,7 @@ import TextArea from "../components/TextArea";
 
 const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
   const {
-    ResumeStore: {
+    resumeStore: {
       introduction,
       name,
       talent,
@@ -37,7 +37,7 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
                 rows={1}
                 onChange={(e) => {
                   runInAction(() => {
-                    rootStore.ResumeStore.profession = e.target.value;
+                    rootStore.resumeStore.profession = e.target.value;
                   });
                 }}
               />
@@ -79,7 +79,7 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
               rows={6}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.education = e.target.value;
+                  rootStore.resumeStore.education = e.target.value;
                 });
               }}
             />
@@ -96,7 +96,7 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
               rows={10}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.workExperience = e.target.value;
+                  rootStore.resumeStore.workExperience = e.target.value;
                 });
               }}
             />
@@ -113,7 +113,7 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
               rows={10}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.talent = e.target.value;
+                  rootStore.resumeStore.talent = e.target.value;
                 });
               }}
             />
@@ -130,7 +130,7 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
               rows={10}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.introduction = e.target.value;
+                  rootStore.resumeStore.introduction = e.target.value;
                 });
               }}
             />

@@ -8,7 +8,7 @@ import { runInAction } from "mobx";
 
 const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
   const {
-    ResumeStore: {
+    resumeStore: {
       introduction,
       name,
       talent,
@@ -46,7 +46,7 @@ const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
             rows={4}
             onChange={(e) => {
               runInAction(() => {
-                rootStore.ResumeStore.introduction = e.target.value;
+                rootStore.resumeStore.introduction = e.target.value;
               });
             }}
           />
@@ -83,7 +83,7 @@ const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
               rows={15}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.workExperience = e.target.value;
+                  rootStore.resumeStore.workExperience = e.target.value;
                 });
               }}
             />
@@ -100,7 +100,7 @@ const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
               rows={6}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.education = e.target.value;
+                  rootStore.resumeStore.education = e.target.value;
                 });
               }}
             />
@@ -119,7 +119,7 @@ const ResumeThree = forwardRef<HTMLDivElement>((props, ref) => {
               rows={10}
               onChange={(e) => {
                 runInAction(() => {
-                  rootStore.ResumeStore.talent = e.target.value;
+                  rootStore.resumeStore.talent = e.target.value;
                 });
               }}
             />
