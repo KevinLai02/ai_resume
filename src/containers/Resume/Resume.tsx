@@ -86,8 +86,8 @@ function Resume() {
                 })
               }
             >
-              <option value="中文">中文</option>
-              <option value="英文">英文</option>
+              <option value="zh-TW">中文</option>
+              <option value="en-US">英文</option>
             </select>
           </div>
         </div>

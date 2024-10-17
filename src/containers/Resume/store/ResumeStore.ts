@@ -186,7 +186,7 @@ class ResumeStore {
         ProfessionalSkills: this.profession,
         TechnicalField: this.category,
         resumeAutobiography: this.introduction,
-        language: this.language,
+        language: this.language === "zh-TW" ? "中文" : "英文",
       });
 
       runInAction(() => {
