@@ -20,7 +20,7 @@ function Template() {
           className="flex flex-1 justify-center"
           onClick={() => {
             runInAction(() => {
-              rootStore.TemplateStore.template = Templates.ONE;
+              rootStore.templateStore.template = Templates.ONE;
             });
           }}
         >
@@ -31,7 +31,7 @@ function Template() {
           className="flex flex-1 justify-center"
           onClick={() => {
             runInAction(() => {
-              rootStore.TemplateStore.template = Templates.TWO;
+              rootStore.templateStore.template = Templates.TWO;
             });
           }}
         >
@@ -42,7 +42,7 @@ function Template() {
           className="flex flex-1 justify-center"
           onClick={() => {
             runInAction(() => {
-              rootStore.TemplateStore.template = Templates.THREE;
+              rootStore.templateStore.template = Templates.THREE;
             });
           }}
         >

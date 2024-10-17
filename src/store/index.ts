@@ -4,9 +4,9 @@ import ResumeStore from "../containers/Resume/store/ResumeStore";
 import TemplateStore from "../containers/Template/store/TemplateStore";
 
 class RootStore {
-  MainStore = new MainStore();
-  ResumeStore = new ResumeStore();
-  TemplateStore = new TemplateStore();
+  mainStore = new MainStore();
+  resumeStore = new ResumeStore();
+  templateStore = new TemplateStore();
   constructor() {
     makeObservable(this);
   }

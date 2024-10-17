@@ -25,7 +25,7 @@ const AIModels = [
 function Form() {
   const router = useRouter();
   const {
-    ResumeStore: { avatar, geminiGenerateResume, alpacaGenerateResume },
+    resumeStore: { avatar, geminiGenerateResume, alpacaGenerateResume },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(Model.ALPACA as string);
@@ -73,7 +73,7 @@ function Form() {
   const uploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = URL.createObjectURL(event.target.files![0]);
     runInAction(() => {
-      rootStore.ResumeStore.avatar = file;
+      rootStore.resumeStore.avatar = file;
     });
   };
 
