@@ -25,6 +25,7 @@ class ResumeStore {
   questionArray: string[] = [];
   answerArray: string[] = [];
   language: string = "zh-TW";
+  isEditing: boolean = false;
   constructor() {
     makeAutoObservable(this);
   }

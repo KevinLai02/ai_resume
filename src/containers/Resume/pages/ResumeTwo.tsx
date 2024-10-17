@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleTwo from "../components/AreaTitleTwo";
 import Image from "next/image";
+import { runInAction } from "mobx";
+import TextArea from "../components/TextArea";
 
 const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
   const {
@@ -18,15 +20,31 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
       workExperience,
       birthday,
       avatar,
+      isEditing,
     },
   } = rootStore;
 
   return (
-    <div className="w-[1190px] h-[1682px] my-10 bg-custom-blue-100" ref={ref}>
+    <div className="w-[1190px] h-[1682px] bg-custom-blue-100" ref={ref}>
       <div className="flex bg-custom-blue-400 text-white mt-10">
         <div className="flex flex-col flex-1 items-center my-5">
           <p className="text-6xl my-10">{name}</p>
-          <p className="text-2xl mb-5">求職意向: {profession}</p>
+          <div className="text-2xl mb-5">
+            {isEditing ? (
+              <TextArea
+                className="text-2xl text-center"
+                value={profession}
+                rows={1}
+                onChange={(e) => {
+                  runInAction(() => {
+                    rootStore.ResumeStore.profession = e.target.value;
+                  });
+                }}
+              />
+            ) : (
+              <pre className="text-2xl text-wrap">{profession}</pre>
+            )}
+          </div>
         </div>
         <div className="flex flex-col flex-1 gap-6 justify-center ml-5">
           <p className="text-xl">出生年月: {birthday}</p>
@@ -54,19 +72,71 @@ const ResumeTwo = forwardRef<HTMLDivElement>((props, ref) => {
       <div className="">
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="教育經歷" />
-          <div className="text-xl">{education}</div>
+          {isEditing ? (
+            <TextArea
+              className="text-xl"
+              value={education}
+              rows={6}
+              onChange={(e) => {
+                runInAction(() => {
+                  rootStore.ResumeStore.education = e.target.value;
+                });
+              }}
+            />
+          ) : (
+            <pre className="text-xl text-wrap">{education}</pre>
+          )}
         </div>
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="工作經歷" />
-          <div className="text-xl">{workExperience}</div>
+          {isEditing ? (
+            <TextArea
+              className="text-xl"
+              value={workExperience}
+              rows={10}
+              onChange={(e) => {
+                runInAction(() => {
+                  rootStore.ResumeStore.workExperience = e.target.value;
+                });
+              }}
+            />
+          ) : (
+            <pre className="text-xl text-wrap">{workExperience}</pre>
+          )}
         </div>
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="專業技能" />
-          <div className="text-xl">{talent}</div>
+          {isEditing ? (
+            <TextArea
+              className="text-xl"
+              value={talent}
+              rows={10}
+              onChange={(e) => {
+                runInAction(() => {
+                  rootStore.ResumeStore.talent = e.target.value;
+                });
+              }}
+            />
+          ) : (
+            <pre className="text-xl text-wrap">{talent}</pre>
+          )}
         </div>
         <div className="flex flex-col items-start px-10 py-12 ">
           <AreaTitleTwo title="自我評價" />
-          <div className="text-xl">{introduction}</div>
+          {isEditing ? (
+            <TextArea
+              className="text-xl"
+              value={introduction}
+              rows={10}
+              onChange={(e) => {
+                runInAction(() => {
+                  rootStore.ResumeStore.introduction = e.target.value;
+                });
+              }}
+            />
+          ) : (
+            <pre className="text-xl text-wrap">{introduction}</pre>
+          )}
         </div>
       </div>
     </div>
