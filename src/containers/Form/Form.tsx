@@ -28,7 +28,7 @@ function Form() {
     ResumeStore: { avatar, geminiGenerateResume, alpacaGenerateResume },
   } = rootStore;
   const [isLoading, setIsLoading] = useState(false);
-  const [model, setModel] = useState("");
+  const [model, setModel] = useState(Model.ALPACA as string);
   const {
     register,
     handleSubmit,

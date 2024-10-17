@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import rootStore from "@/store";
 import AreaTitleOne from "../components/AreaTitleOne";
 import Image from "next/image";
+import { runInAction } from "mobx";
+import TextArea from "../components/TextArea";
 
 const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
   const {
@@ -18,10 +20,11 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
       workExperience,
       birthday,
       avatar,
+      isEditing,
     },
   } = rootStore;
   return (
-    <div className="flex flex-row w-[1190px] h-[1682px] border my-10" ref={ref}>
+    <div className="flex flex-row w-[1190px] h-[1682px] border" ref={ref}>
       <div className="flex flex-col w-2/5">
         <div className="flex">
           <div className="bg-main-gray w-12 h-10" />
@@ -88,7 +91,20 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
           </div>
           <div className="flex-1 mt-10 ml-11 bg-main-earth py-5 px-8">
             <AreaTitleOne title="education" iconColor="main-gray" />
-            <p className="text-xl px-5 pt-10">{education}</p>
+            {isEditing ? (
+              <TextArea
+                className="text-xl px-5 pt-6"
+                value={education}
+                rows={25}
+                onChange={(e) => {
+                  runInAction(() => {
+                    rootStore.ResumeStore.education = e.target.value;
+                  });
+                }}
+              />
+            ) : (
+              <pre className="text-xl px-5 pt-6 text-wrap">{education}</pre>
+            )}
           </div>
         </div>
         <div className="flex">
@@ -102,20 +118,63 @@ const ResumeOne = forwardRef<HTMLDivElement>((props, ref) => {
           <div className="flex-1">
             <div className="border-b-4 pb-5 pt-[100px]">
               <div className="ml-2 text-[60px]">{name}</div>
-              <div className="ml-2 text-2xl">{profession}</div>
+              {isEditing ? (
+                <TextArea
+                  className="ml-2 text-2xl"
+                  value={profession}
+                  rows={1}
+                  onChange={(e) => {
+                    runInAction(() => {
+                      rootStore.ResumeStore.profession = e.target.value;
+                    });
+                  }}
+                />
+              ) : (
+                <pre className="ml-2 text-2xl text-wrap">{profession}</pre>
+              )}
             </div>
             <div className="mt-5">
               <div className="bg-main-earth py-5 px-5">
                 <AreaTitleOne title="about me" iconColor="main-gray" />
               </div>
-              <p className="text-xl px-5 pt-10">{introduction}</p>
+              {isEditing ? (
+                <TextArea
+                  className="text-xl px-5 pt-6"
+                  value={introduction}
+                  rows={14}
+                  onChange={(e) => {
+                    runInAction(() => {
+                      rootStore.ResumeStore.introduction = e.target.value;
+                    });
+                  }}
+                />
+              ) : (
+                <pre className="text-xl px-5 pt-6 text-wrap">
+                  {introduction}
+                </pre>
+              )}
             </div>
           </div>
           <div className="flex-1">
             <div className="bg-main-earth p-5">
               <AreaTitleOne title="experience" iconColor="main-gray" />
             </div>
-            <div className="text-xl px-5 pt-10">{workExperience}</div>
+            {isEditing ? (
+              <TextArea
+                className="text-xl px-5 pt-6"
+                value={workExperience}
+                rows={14}
+                onChange={(e) => {
+                  runInAction(() => {
+                    rootStore.ResumeStore.workExperience = e.target.value;
+                  });
+                }}
+              />
+            ) : (
+              <pre className="text-xl px-5 pt-6 text-wrap">
+                {workExperience}
+              </pre>
+            )}
           </div>
         </div>
         <div className="bg-main-gray w-full h-10" />
