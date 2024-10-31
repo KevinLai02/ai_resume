@@ -34,9 +34,7 @@ function Interviewer() {
   } = rootStore;
 
   useEffect(() => {
-    if (questionArray.length > 0) {
-      setTalkList([{ role: "AI", text: questionArray[0] }]);
-    }
+    setTalkList([{ role: "AI", text: questionArray[0] }]);
   }, [questionArray]);
 
   const startRecording = async () => {
@@ -114,7 +112,7 @@ function Interviewer() {
       const utterance = new SpeechSynthesisUtterance(
         talkList[talkList.length - 1].text,
       );
-      utterance.lang = "zh-TW";
+      utterance.lang = language;
       utterance.rate = 1.5;
       window.speechSynthesis.speak(utterance);
     }
