@@ -24,3 +24,19 @@ export const callUploadResume = async (data: any) => {
   });
   return request;
 };
+export const callSignUp = async (data: any) => {
+  const request = axios({
+    method: "post",
+    url: "http://localhost:8080/signUp",
+    data,
+  });
+  return request;
+};
+export const callLogin = async (data: any) => {
+  const request = axios({
+    method: "post",
+    url: "http://localhost:8080/login",
+    data,
+  });
+  return request;
+};
