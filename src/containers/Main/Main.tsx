@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
@@ -7,12 +7,16 @@ import Button from "./components/Button";
 import rootStore from "@/store";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
+import { checkToken } from "@/utils/checkToken";
 function Main() {
   const router = useRouter();
   const {
     resumeStore: { uploadResume },
   } = rootStore;
   const [questionLoading, setQuestionLoading] = useState(false);
+  useEffect(() => {
+    checkToken(router);
+  }, []);
 
   return (
     <div className="flex flex-col flex-1 text-xl">

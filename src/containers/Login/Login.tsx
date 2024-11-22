@@ -1,11 +1,13 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
+import React, { use, useState } from "react";
 import Header from "../Main/components/Header";
 import { useForm } from "react-hook-form";
 import Button from "@/containers/Main/components/Button";
 import { callLogin } from "@/api/api";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
+import { AxiosError } from "axios";
+import Image from "next/image";
 function Login() {
   const {
     register,
@@ -18,13 +20,37 @@ function Login() {
       password: "",
     },
   });
+  const [error, setError] = useState("");
+  const router = useRouter();
   const onSubmit = async (data: { email: string; password: string }) => {
-    const res = await callLogin(data);
+    try {
+      const res = await callLogin(data);
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        router.push("/");
+      }
+    } catch (error: unknown) {
+      if (error instanceof AxiosError && error.response) {
+        setError(error.response.data.message);
+      } else {
+        setError("Unknown error");
+      }
+    }
   };
+
   return (
     <div className="flex flex-col flex-1 items-center h-screen">
-      <Header />
-      <div className="flex flex-col items-center p-5 rounded-xl w-[30%] min-w-[510px] font-bold drop-shadow-md">
+      <div className="z-10 w-full">
+        <Header />
+      </div>
+      <Image
+        src="/images/ocean2.jpg"
+        alt=""
+        width={500}
+        height={500}
+        className="w-full h-full absolute -z-0"
+      />
+      <div className="flex flex-col flex-1 items-center justify-center p-5 rounded-xl w-[30%] min-w-[510px] font-bold drop-shadow-md">
         <div className="flex flex-col w-full px-10 pb-10 my-4 bg-white rounded-xl">
           <div className="mt-10">
             <div className="text-3xl font-bold">Login</div>
@@ -61,6 +87,7 @@ function Login() {
           >
             <div className="text-lg font-bold text-white">登入</div>
           </Button>
+          <p className="mt-5 text-center text-red-500">{error}</p>
         </div>
       </div>
     </div>
