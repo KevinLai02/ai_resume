@@ -8,6 +8,8 @@ import rootStore from "@/store";
 import Lottie from "lottie-react";
 import LoadingAnimation from "@/../public/lottie/animation_loading.json";
 import { checkToken } from "@/utils/checkToken";
+import AnalystButton from "./components/AnalystButton";
+
 function Main() {
   const router = useRouter();
   const {
@@ -20,6 +22,7 @@ function Main() {
 
   return (
     <div className="flex flex-col flex-1 text-xl">
+      <AnalystButton />
       <Header />
       <div className="flex py-3 px-10 text-3xl justify-center font-bold">
         可選擇以下方式打造您的履歷

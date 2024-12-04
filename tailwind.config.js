@@ -26,6 +26,13 @@ module.exports = {
           red: {
             100: "#F98D8D",
           },
+          yellow: {
+            100: "#fae4b5",
+            200: "#f5bf6e",
+          },
+          green: {
+            DEFAULT: "#00796b",
+          },
         },
       },
     },

@@ -4,7 +4,7 @@ import axios from "axios";
 export const callAlpacaResume = async (data: IGenerateData) => {
   const request = axios({
     method: "post",
-    url: "http://localhost:8080/resume",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/resume",
     headers: {
       "Content-Type": "application/json",
     },
@@ -16,7 +16,7 @@ export const callAlpacaResume = async (data: IGenerateData) => {
 export const callUploadResume = async (data: any) => {
   const request = axios({
     method: "post",
-    url: "http://localhost:8080/upload",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/upload",
     headers: {
       Accept: "multipart/form-data",
     },
@@ -27,7 +27,7 @@ export const callUploadResume = async (data: any) => {
 export const callSignUp = async (data: any) => {
   const request = axios({
     method: "post",
-    url: "http://localhost:8080/signUp",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/signUp",
     data,
   });
   return request;
@@ -35,7 +35,7 @@ export const callSignUp = async (data: any) => {
 export const callLogin = async (data: any) => {
   const request = axios({
     method: "post",
-    url: "http://localhost:8080/login",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/login",
     data,
   });
   return request;
