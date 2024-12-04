@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
-// import "./AnalyzePage.css"; // 引入 CSS 檔案進行樣式設計
 import rootStore from "@/store";
 import classNames from "classnames";
 import Header from "@/containers/Main/components/Header";
