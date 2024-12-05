@@ -5,6 +5,7 @@ import rootStore from "@/store";
 import Lottie from "lottie-react";
 import Loading from "@/../public/lottie/animation_loading.json";
 import Header from "../Main/components/Header";
+import Image from "next/image";
 
 function Analyst() {
   const {
@@ -21,9 +22,15 @@ function Analyst() {
   };
 
   return (
-    <div className="h-screen">
+    <div
+      className="h-screen bg-cover bg-center flex flex-col"
+      style={{
+        backgroundImage: "url('/images/lighthouse.jpg')",
+        backgroundPosition: "center 100px"
+      }}
+    >
       <Header />
-      <div className="flex flex-col items-center mt-20">
+      <div className="flex flex-col items-center mt-32">
         <div className="flex flex-col items-center p-10 bg-custom-yellow-200 rounded-lg shadow">
           <span className="text-2xl font-bold">AI企業分析師</span>
           <div className="flex items-center mt-5 text-xl">
