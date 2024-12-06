@@ -25,7 +25,7 @@ function Analyst() {
     <div
       className="h-screen bg-cover bg-center flex flex-col"
       style={{
-        backgroundImage: "url('/images/lighthouse.jpg')",
+        backgroundImage: "url('/images/lighthouse 2.jpg')",
         backgroundPosition: "center 100px"
       }}
     >
