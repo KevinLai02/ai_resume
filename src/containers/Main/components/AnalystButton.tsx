@@ -6,7 +6,7 @@ function AnalystButton() {
   const router = useRouter();
   return (
     <div
-      className="fixed top-32 left-10 right-0 cursor-pointer"
+      className="cursor-pointer max-w-[120px]"
       onClick={() => {
         router.push("/analyst");
       }}

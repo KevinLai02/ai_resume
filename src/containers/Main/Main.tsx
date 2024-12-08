@@ -22,7 +22,9 @@ function Main() {
 
   return (
     <div className="flex flex-col flex-1 text-xl">
-      <AnalystButton />
+      <div className="fixed top-32 left-10 right-0 ">
+        <AnalystButton />
+      </div>
       <Header />
       <div className="flex py-3 px-10 text-3xl justify-center font-bold">
         可選擇以下方式打造您的履歷

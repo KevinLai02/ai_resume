@@ -21,7 +21,7 @@ function Analyst() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen z-[-10]">
       <Header />
       <div className="flex flex-col items-center mt-20">
         <div className="flex flex-col items-center p-10 bg-custom-yellow-200 rounded-lg shadow">
